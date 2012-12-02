@@ -4931,6 +4931,27 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 				}
 			}
 
+			//T-hawk for Realms Beyond balance mod
+			//If a tech has a free unit, and that unit has corp spread capability, spawn it for researchers after the first
+			//(for the first researcher, the existing code below will spawn it as if it were a great person)
+			eFreeUnit = GET_PLAYER(ePlayer).getTechFreeUnit(eIndex);
+			if (eFreeUnit != NO_UNIT && GC.getGameINLINE().countKnownTechNumTeams(eIndex) > 1)
+			{
+				pCapitalCity = GET_PLAYER(ePlayer).getCapitalCity();
+				if (pCapitalCity != NULL)
+				{
+					for (int iI = 0; iI < GC.getNumCorporationInfos(); ++iI)
+					{
+						if (GC.getUnitInfo(eFreeUnit).getCorporationSpreads((CorporationTypes)iI) > 0)
+						{
+							GET_PLAYER(ePlayer).initUnit(eFreeUnit, pCapitalCity->getX_INLINE(), pCapitalCity->getY_INLINE(), UNITAI_MISSIONARY);
+							break;
+						}
+					}
+				}
+			}
+			//end mod
+
 			if (bFirst)
 			{
 				if (GC.getGameINLINE().countKnownTechNumTeams(eIndex) == 1)

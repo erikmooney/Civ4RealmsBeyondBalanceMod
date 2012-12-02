@@ -4677,6 +4677,23 @@ int CvCity::getHurryPopulation(HurryTypes eHurry, int iHurryCost) const
 
 	int iPopulation = (iHurryCost - 1) / GC.getGameINLINE().getProductionPerPopulation(eHurry);
 
+	//T-hawk for Realms Beyond rebalance mod.
+	//Slavery gives 30H for first population whipped, 20 for each additional.
+	//If hurry population > 1, population beyond the first yields only 2/3.
+	if (iPopulation > 0)
+	{
+		//sample cases:
+		//29H : the above calc comes to 28/30 and we never get here
+		//30H : the above calc comes to 29/30 and we never get here
+		//31H : 1 + (30 - 30) / 20 = 1
+		//49H : 1 + (48 - 30) / 20 = 1
+		//50H : 1 + (49 - 30) / 20 = 1
+		//51H : 1 + (50 - 30) / 20 = 2
+		//70H : 1 + (69 - 30) / 20 = 2
+		//71H : 1 + (70 - 30) / 20 = 3
+		iPopulation = 1 + (iHurryCost - 1 - GC.getGameINLINE().getProductionPerPopulation(eHurry)) / (GC.getGameINLINE().getProductionPerPopulation(eHurry) * 2 / 3);
+	} //end mod
+
 	return std::max(1, (iPopulation + 1));
 }
 
@@ -4686,7 +4703,16 @@ int CvCity::hurryProduction(HurryTypes eHurry) const
 
 	if (GC.getHurryInfo(eHurry).getProductionPerPopulation() > 0)
 	{
-		iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+		//iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+		//T-hawk for Realms Beyond rebalance mod, see above
+		//First try 1 population and see if it is enough
+		iProduction = (100 * getExtraProductionDifference(1 * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+		if (iProduction < productionLeft())
+		{
+			//More than 1 population needed, now add the rest
+			iProduction += (100 * getExtraProductionDifference((hurryPopulation(eHurry) - 1) * GC.getGameINLINE().getProductionPerPopulation(eHurry) * 2 / 3)) / std::max(1, getHurryCostModifier());
+		} //end mod
+
 		FAssert(iProduction >= productionLeft());
 	}
 	else
@@ -5404,7 +5430,10 @@ int CvCity::calculateDistanceMaintenanceTimes100() const
 		iTempMaintenance *= GC.getHandicapInfo(getHandicapType()).getDistanceMaintenancePercent();
 		iTempMaintenance /= 100;
 
-		iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
+		//T-hawk for Realms Beyond balance mod
+		//For toroidal maps, calculate distance factor as if cylindrical (see CvMap for the implementation)
+		//iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
+		iTempMaintenance /= GC.getMapINLINE().maxPlotDistanceToroidalAsCylindrical();
 
 		iWorstCityMaintenance = std::max(iWorstCityMaintenance, iTempMaintenance);
 
@@ -7936,11 +7965,13 @@ int CvCity::getCommerceRateTimes100(CommerceTypes eIndex) const
 	int iRate = m_aiCommerceRate[eIndex];
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE))
 	{
-		if (eIndex == COMMERCE_CULTURE)
+		//T-hawk for Realms Beyond rebalance mod
+		//Lose the espionage-to-culture conversion for No Espionage
+		/*if (eIndex == COMMERCE_CULTURE)
 		{
 			iRate += m_aiCommerceRate[COMMERCE_ESPIONAGE];
 		}
-		else if (eIndex == COMMERCE_ESPIONAGE)
+		else*/ if (eIndex == COMMERCE_ESPIONAGE)
 		{
 			iRate = 0;
 		}
@@ -9314,7 +9345,20 @@ void CvCity::setGreatPeopleUnitRate(UnitTypes eIndex, int iNewValue)
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex expected to be < GC.getNumUnitInfos()");
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE) && GC.getUnitInfo(eIndex).getEspionagePoints() > 0)
 	{
-		return;
+		//T-hawk for Realms Beyond rebalance mod
+		//Great Spy points: don't produce those weird typeless points, instead convert to Merchant points
+		//this is a bit clunky: we have to loop through all unit types looking for the great merchant
+		for (int i = 0; i < (UnitTypes) GC.getNumUnitInfos(); i++)
+		{
+			if(GC.getUnitInfo((UnitTypes)i).getBaseTrade() > 0)
+			{
+				eIndex = (UnitTypes)i;
+				break;
+			}
+		}
+
+		//return;
+		//end mod
 	}
 
 	m_paiGreatPeopleUnitRate[eIndex] = iNewValue;
@@ -9496,6 +9540,12 @@ void CvCity::changeMaxSpecialistCount(SpecialistTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex expected to be < GC.getNumSpecialistInfos()");
+
+	//T-hawk for Realms Beyond rebalance mod
+	//Fix No Espionage: make sure no spy specialist slot ever exists
+	if ((GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE))
+		&& GET_PLAYER(getOwnerINLINE()).specialistCommerce(eIndex, COMMERCE_ESPIONAGE) > 0)
+		return;
 
 	if (iChange != 0)
 	{
@@ -11300,6 +11350,17 @@ bool CvCity::doCheckProduction()
 
 				if (iProductionGold > 0)
 				{
+					//T-hawk for Realms Beyond balance mod
+					//No refund fail gold for wonders if you built the wonder yourself (covers national wonders too)
+					//FIXED version after PBEM20 bug
+					int iLoop;
+					CvCity* pLoopCity;
+					for (pLoopCity = GET_PLAYER(getOwnerINLINE()).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER(getOwnerINLINE()).nextCity(&iLoop))
+					{
+						if (pLoopCity->getNumBuilding((BuildingTypes) iI) > 0)
+							iProductionGold = 0;
+					}
+
 					GET_PLAYER(getOwnerINLINE()).changeGold(iProductionGold);
 
 					szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_WONDER_PROD_CONVERTED", getNameKey(), GC.getBuildingInfo((BuildingTypes)iI).getTextKeyWide(), iProductionGold);

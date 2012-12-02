@@ -6389,9 +6389,24 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		}
 	}
 
+
 	if (iPossibleKnownCount > 0)
 	{
-		iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+		//T-hawk for Realms Beyond balance mod
+		//If trading is ON: apply iModifier once for each known tech that enables tech trading
+		//If trading is OFF: halve the XML value and apply iModifier always once and only once
+		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING))
+		{	//trading ON, apply modifier once for each known tech that enables trading
+			for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
+			{
+				if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isTechTrading())
+					iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+			}
+		}
+		else
+		{	//trading OFF, halve XML value and apply it always exactly once
+			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount / 2) / iPossibleKnownCount;	
+		}	//end mod
 	}
 
 	int iPossiblePaths = 0;

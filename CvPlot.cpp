@@ -430,7 +430,9 @@ void CvPlot::doImprovement()
 				{
 					if (GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI) > 0)
 					{
-						if (GC.getGameINLINE().getSorenRandNum(GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI), "Bonus Discovery") == 0)
+						// RBMP game speed scaling: * 100 / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent()
+						if (GC.getGameINLINE().getSorenRandNum(GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI) * 100 /
+							GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent(), "Bonus Discovery") == 0)
 						{
 							setBonusType((BonusTypes)iI);
 
@@ -5991,9 +5993,9 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				//This change is a bit hacky - it doesn't actually look at the traits held by the player - but only Financial's bonus yield even gets here
 				if (!isRiver() || eYield != YIELD_COMMERCE)
 				{
-					iYield += GC.getDefineINT("EXTRA_YIELD");
-				}
+				iYield += GC.getDefineINT("EXTRA_YIELD");
 			}
+		}
 		}
 
 		if (GET_PLAYER(ePlayer).isGoldenAge())
@@ -8110,7 +8112,8 @@ void CvPlot::doFeature()
 
 	if (getFeatureType() != NO_FEATURE)
 	{
-		iProbability = GC.getFeatureInfo(getFeatureType()).getDisappearanceProbability();
+		// RBMP game speed scaling: * 100 / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent()
+		iProbability = GC.getFeatureInfo(getFeatureType()).getDisappearanceProbability() * 100 / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent();
 
 		if (iProbability > 0)
 		{
@@ -8162,6 +8165,9 @@ void CvPlot::doFeature()
 								iProbability *= std::max(0, (GC.getROUTE_FEATURE_GROWTH_MODIFIER() + 100));
 								iProbability /= 100;
 							}
+
+							// RBMP game speed scaling:
+							iProbability = iProbability * 100 / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent();
 
 							if (iProbability > 0)
 							{

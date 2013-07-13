@@ -82,6 +82,9 @@ CvPlayer::CvPlayer()
 
 	m_ppaaiSpecialistExtraYield = NULL;
 	m_ppaaiImprovementYieldChange = NULL;
+	
+	// RBMP Free Tech Popup Fix
+	m_bChoosingFreeTech = false;
 
 	reset(NO_PLAYER, true);
 }
@@ -476,6 +479,9 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bExtendedGame = false;
 	m_bFoundedFirstCity = false;
 	m_bStrike = false;
+
+	// RBMP Free Tech Popup Fix
+	m_bChoosingFreeTech = false;
 
 	m_eID = eID;
 	updateTeamType();
@@ -3003,9 +3009,26 @@ bool CvPlayer::hasBusyUnit() const
 	return false;
 }
 
+// RBMP Free Tech Popup Fix
+bool CvPlayer::isChoosingFreeTech() const
+{
+	return m_bChoosingFreeTech;
+}
+
+// RBMP Free Tech Popup Fix
+void CvPlayer::setChoosingFreeTech(bool bValue)
+{
+	m_bChoosingFreeTech = bValue;
+}
 
 void CvPlayer::chooseTech(int iDiscover, CvWString szText, bool bFront)
 {
+	// RBMP Free Tech Popup Fix
+	if (iDiscover > 0)
+	{
+		setChoosingFreeTech(true);
+	}
+
 	CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSETECH);
 	if (NULL != pInfo)
 	{
@@ -3833,8 +3856,14 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 	case TRADE_CITIES:
 		{
 			CvCity* pCityTraded = getCity(item.m_iData);
+			
+			// RBMP bugfix - cancel trade if city to be traded doesn't exist anymore
+			if (NULL == pCityTraded)
+			{
+				return false;
+			}
 
-			if (NULL != pCityTraded && pCityTraded->getLiberationPlayer(false) == eWhoTo)
+			if (pCityTraded->getLiberationPlayer(false) == eWhoTo)
 			{
 				return true;
 			}
@@ -6393,20 +6422,13 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 	if (iPossibleKnownCount > 0)
 	{
 		//T-hawk for Realms Beyond balance mod
-		//If trading is ON: apply iModifier once for each known tech that enables tech trading
-		//If trading is OFF: halve the XML value and apply iModifier always once and only once
-		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING))
-		{	//trading ON, apply modifier once for each known tech that enables trading
-			for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
-			{
-				if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isTechTrading())
-					iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
-			}
+		//Apply iModifier once for each known tech that enables map trading
+
+		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
+		{
+			if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isMapTrading())
+				iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
 		}
-		else
-		{	//trading OFF, halve XML value and apply it always exactly once
-			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount / 2) / iPossibleKnownCount;	
-		}	//end mod
 	}
 
 	int iPossiblePaths = 0;

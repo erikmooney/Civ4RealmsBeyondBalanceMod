@@ -765,6 +765,9 @@ void CvCity::kill(bool bUpdatePlotGroups)
 		abEspionageVisibility.push_back(getEspionageVisibility((TeamTypes)iI));
 	}
 
+	// RBMP release trade routes or they'll be lost forever
+	clearTradeRoutes();
+
 	pPlot->setPlotCity(NULL);
 
 	area()->changeCitiesPerPlayer(getOwnerINLINE(), -1);
@@ -7503,6 +7506,9 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 				// ONEVENT - Culture growth
 				CvEventReporter::getInstance().cultureExpansion(this, getOwnerINLINE());
 				
+
+				// RBMP don't allow culture border pops to use production twice
+				/*
 				//Stop Build Culture
 				if (isProductionProcess())
 				{
@@ -7510,7 +7516,7 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 					{
 						popOrder(0, false, true);						
 					}
-				}
+				}*/
 			}
 		}
 	}
@@ -10517,7 +10523,7 @@ void CvCity::updateTradeRoutes()
 	}
 
 	clearTradeRoutes();
-
+	
 	if (!isDisorder() && !isPlundered())
 	{
 		iTradeRoutes = getTradeRoutes();
@@ -10540,7 +10546,8 @@ void CvCity::updateTradeRoutes()
 
 								for (iJ = 0; iJ < iTradeRoutes; iJ++)
 								{
-									if (iValue > paiBestValue[iJ])
+									// RBMP fix trade route player order bias - always prefer internal routes if values are equal
+									if (iValue > paiBestValue[iJ] || iValue == paiBestValue[iJ] && (getTeam() == GET_PLAYER((PlayerTypes)iI).getTeam()))
 									{
 										for (iK = (iTradeRoutes - 1); iK > iJ; iK--)
 										{
@@ -10800,6 +10807,8 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 				changeOverflowProduction(iOverflow, getProductionModifier(eTrainUnit));
 			}
 			setUnitProduction(eTrainUnit, 0);
+			// RBMP decay fix
+			setUnitProductionTime(eTrainUnit, 0);
 
 			int iProductionGold = std::max(0, iOverflow - iMaxOverflowForGold) * GC.getDefineINT("MAXED_UNIT_GOLD_PERCENT") / 100;
 			if (iProductionGold > 0)
@@ -10872,6 +10881,8 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 				changeOverflowProduction(iOverflow, getProductionModifier(eConstructBuilding));
 			}
 			setBuildingProduction(eConstructBuilding, 0);
+			// RBMP decay fix
+			setBuildingProductionTime(eConstructBuilding, 0);
 
 			int iProductionGold = std::max(0, iOverflow - iMaxOverflowForGold) * GC.getDefineINT("MAXED_BUILDING_GOLD_PERCENT") / 100;
 			if (iProductionGold > 0)
@@ -11471,6 +11482,9 @@ void CvCity::doProduction(bool bAllowNoProduction)
 		return;
 	}
 
+	// RBMP don't allow double use of production by automation
+	bool bWasProcess = isProductionProcess();
+
 	if (!isHuman() || isProductionAutomated())
 	{
 		if (!isProduction() || isProductionProcess() || AI_isChooseProductionDirty())
@@ -11484,7 +11498,8 @@ void CvCity::doProduction(bool bAllowNoProduction)
 		return;
 	}
 
-	if (isProductionProcess())
+	// RBMP use the recorded value from before instead of looking it up now
+	if (bWasProcess)
 	{
 		return;
 	}

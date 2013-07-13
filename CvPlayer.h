@@ -480,6 +480,10 @@ public:
 	int getUpkeepModifier() const;																																						// Exposed to Python
 	void changeUpkeepModifier(int iChange);
 
+	//T-hawk for RB balance mod
+	int getCityUpkeepModifier() const;																																						// Exposed to Python
+	void changeCityUpkeepModifier(int iChange);
+
 	int getLevelExperienceModifier() const;																																						// Exposed to Python
 	void changeLevelExperienceModifier(int iChange);
 
@@ -1104,6 +1108,7 @@ protected:
 	int m_iCorporationMaintenanceModifier;
 	int m_iTotalMaintenance;
 	int m_iUpkeepModifier;
+	int m_iCityUpkeepModifier;			//T-hawk for RB balance mod
 	int m_iLevelExperienceModifier;
 	int m_iExtraHealth;
 	int m_iBuildingGoodHealth;

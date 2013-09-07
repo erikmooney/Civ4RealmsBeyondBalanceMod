@@ -1226,22 +1226,6 @@ void CvDLLWidgetData::doResearch(CvWidgetDataStruct &widgetDataStruct)
 		}
 	}
 
-	// RBMP Free Tech Popup Fix
-	if (widgetDataStruct.m_iData2 > 0)
-	{
-		CvPlayer& kPlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
-
-		if (!kPlayer.isChoosingFreeTech())
-		{
-			gDLL->getInterfaceIFace()->addMessage(GC.getGameINLINE().getActivePlayer(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_CHEATERS_NEVER_PROSPER"), NULL, MESSAGE_TYPE_MAJOR_EVENT);
-			return;
-		}
-		else
-		{
-			kPlayer.setChoosingFreeTech(false);
-		}
-	}
-
 	CvMessageControl::getInstance().sendResearch(((TechTypes)widgetDataStruct.m_iData1), widgetDataStruct.m_iData2, bShift);
 }
 

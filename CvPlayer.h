@@ -121,10 +121,6 @@ public:
 	DllExport bool hasAutoUnit() const;
 	DllExport bool hasBusyUnit() const;
 
-	// RBMP Free Tech Popup Fix
-	bool isChoosingFreeTech() const;
-	void setChoosingFreeTech(bool bValue);
-
 	DllExport void chooseTech(int iDiscover = 0, CvWString szText = "", bool bFront = false);				// Exposed to Python
 
 	int calculateScore(bool bFinal = false, bool bVictory = false);
@@ -1159,9 +1155,6 @@ protected:
 	bool m_bStrike;
 	bool m_bHuman;
 	
-	// RBMP Free Tech Popup Fix
-	bool m_bChoosingFreeTech;
-
 	PlayerTypes m_eID;
 	LeaderHeadTypes m_ePersonalityType;
 	EraTypes m_eCurrentEra;

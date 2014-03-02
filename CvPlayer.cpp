@@ -6401,14 +6401,20 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 
 	if (iPossibleKnownCount > 0)
 	{
-		//T-hawk for Realms Beyond balance mod
+		//1st version - T-hawk for Realms Beyond balance mod
 		//Apply iModifier once for each known tech that enables map trading
+		//for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
+		//{
+		//	if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isMapTrading())
+		//		iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+		//}*/
 
-		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
-		{
-			if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isMapTrading())
-				iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
-		}
+		//2nd version - Plako for Realms Beyond Balance mod use highest era and apply 
+		//iModifier with following pattern
+		//(game.getCurrentHighestEra*IModifier
+		iModifier += GC.getGameINLINE().getCurrentHighestEra() * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount);
+
+
 	}
 
 	int iPossiblePaths = 0;

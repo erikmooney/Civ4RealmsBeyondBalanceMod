@@ -3967,7 +3967,8 @@ bool CvGame::circumnavigationAvailable() const
 		return false;
 	}
 
-	if (kMap.getLandPlots() > ((kMap.numPlotsINLINE() * 2) / 3))
+	//T-hawk for Realms Beyond balance mod, change circumnavigation availability to a global define
+	if ((kMap.numPlotsINLINE() - kMap.getLandPlots()) < ((kMap.numPlotsINLINE() * GC.getDefineINT("CIRCUMNAVIGATE_MIN_WATER_PERCENT" ) / 100)))
 	{
 		return false;
 	}

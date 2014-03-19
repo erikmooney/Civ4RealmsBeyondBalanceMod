@@ -544,6 +544,10 @@ public:
 
 	DllExport void handleDiplomacySetAIComment(DiploCommentTypes eComment) const;
 
+	//Plako for RBMod (monitor)
+	void appendBeginAndResize(CvString filepath, CvString inputData);
+	bool replace(CvString& str, const CvString& from, CvString& to);
+
 protected:
 	int m_iElapsedGameTurns;
 	int m_iStartTurn;
@@ -687,6 +691,8 @@ protected:
 	CvPlot* normalizeFindLakePlot(PlayerTypes ePlayer);
 
 	void doUpdateCacheOnTurn();
+  //Plako for Rbmod (monitor)
+	void getTurnTimerText(CvWString& strText);
 };
 
 #endif

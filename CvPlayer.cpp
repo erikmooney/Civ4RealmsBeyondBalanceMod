@@ -32,6 +32,9 @@
 #include "CvDLLFAStarIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
 
+//plako for Rbmod (monitor)
+#include <sstream>
+
 // Public Functions...
 
 CvPlayer::CvPlayer()
@@ -9910,6 +9913,32 @@ void CvPlayer::setEndTurn(bool bNewValue)
 		if (isEndTurn())
 		{
 			setAutoMoves(true);
+
+			//Plako for RBmod (monitor)
+			if (gDLL->IsPitbossHost()) {
+				if (bNewValue)  {
+					time_t rawtime;
+					struct tm * timeinfo;
+					time ( &rawtime );
+					timeinfo = localtime ( &rawtime );
+					CvString timeString = asctime (timeinfo);					
+					CvString from = "\n";
+					CvString to = " ";
+					GC.getGameINLINE().replace(timeString, from, to);
+					
+					std::ostringstream convertId;
+					convertId << getID();
+
+					std::ostringstream convertGameTurn;
+					convertGameTurn << GC.getGameINLINE().getGameTurn();
+
+					CvString eventText = timeString + " --- " + (CvString)(getName()) + " --- END TURN --- ";
+					eventText += convertId.str() + " --- ";
+					eventText += convertGameTurn.str() + "\n";
+					GC.getGameINLINE().appendBeginAndResize("C:\\temp\\event.txt", eventText);
+
+				}
+			}
 		}
 	}
 }

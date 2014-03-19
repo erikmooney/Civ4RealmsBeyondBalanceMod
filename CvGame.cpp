@@ -25,10 +25,18 @@
 #include "CvEventReporter.h"
 #include "CvMessageControl.h"
 
+//plako for Rbmod (monitor)
+#include "CvGameTextMgr.h"
+
 // interface uses
 #include "CvDLLInterfaceIFaceBase.h"
 #include "CvDLLEngineIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
+
+//plako for Rbmod (monitor)
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 // Public Functions...
 
@@ -2041,10 +2049,171 @@ int CvGame::getTeamClosenessScore(int** aaiDistances, int* aiStartingLocs)
 	return iScore;
 }
 
+//Plako for Rbmod (monitor)
+void CvGame::appendBeginAndResize(CvString filepath, CvString inputData) {
+	
+	std::ifstream in(filepath);
+	CvString contents;
+	if (in)
+	{
+		in.seekg(0, std::ios::end);
+		contents.resize(in.tellg());
+		in.seekg(0, std::ios::beg);
+		in.read(&contents[0], contents.size());
+		in.close();
+	}
+	else {
+		std::ofstream out(filepath, std::ios::trunc);
+		out << inputData;
+		out << "---LAST LINE---" << "\n";
+		out.close();
+		return;
+	}
+
+	std::stringstream ss;
+	ss << contents;
+
+	std::ofstream out(filepath, std::ios::trunc);
+	out << inputData;
+
+	CvString line;
+	int lineCount = 0;
+	while (std::getline(ss, line)) {
+		if (line==NULL) break;
+		out << line << "\n";
+		if (line=="---LAST LINE---") break;
+		lineCount++;
+		if (lineCount>4000) break;
+	}
+	out.close();
+
+}
+
+//Plako for Rbmod (monitor)
+void CvGame::getTurnTimerText(CvWString& strText) {
+	if (getTurnSlicesRemaining() > 0)
+		{
+		// Get number of seconds remaining
+		int iTurnSecondsRemaining = ((int)floorf((float)(getTurnSlicesRemaining()-1) * ((float)gDLL->getMillisecsPerTurn()/1000.0f)) + 1);
+		int iTurnMinutesRemaining = (int)(iTurnSecondsRemaining/60);
+		iTurnSecondsRemaining = (iTurnSecondsRemaining%60);
+		int iTurnHoursRemaining = (int)(iTurnMinutesRemaining/60);
+		iTurnMinutesRemaining = (iTurnMinutesRemaining%60);
+
+		// Display time remaining
+		CvWString szTempBuffer;
+		szTempBuffer.Format(L"%d:%02d:%02d", iTurnHoursRemaining, iTurnMinutesRemaining, iTurnSecondsRemaining);
+		strText += szTempBuffer;
+	}
+	else
+	{
+		// Flash zeroes
+		if (getTurnSlicesRemaining() % 2 == 0)
+		{
+			// Display 0
+			strText+=L"0:00";
+		}
+	}
+}
+
+//Plako for Rbmod (monitor)
+bool CvGame::replace(CvString& str, const CvString& from, CvString& to) {
+    size_t start_pos = str.find(from);
+    if(start_pos == std::string::npos)
+        return false;
+    str.replace(start_pos, from.length(), to);
+    return true;
+}
 
 void CvGame::update()
 {
 	PROFILE("CvGame::update");
+
+	//Plako for RBmod (monitor)
+	//1 slice is 250 ms. Write data once per second to file
+	if (gDLL->IsPitbossHost()) {
+		if ((getTurnSlice() % 4) == 0) {
+			
+			time_t rawtime;
+			struct tm * timeinfo;
+			time ( &rawtime );
+			timeinfo = localtime ( &rawtime );
+
+			CvString timeString = asctime (timeinfo);
+			CvString from = "\n";
+			CvString to = " ";
+
+			replace(timeString, from, to);
+
+			CvWString turnTimerText; 
+			getTurnTimerText(turnTimerText);
+
+			std::ofstream outTime("C:\\temp\\time.txt", std::ios::trunc);
+			std::ofstream outScore("C:\\temp\\score.txt", std::ios::trunc);
+			outTime << (CvString)turnTimerText << "\n"; 
+			outTime	<< timeString << "\n";
+			outTime << this->getGameTurnYear() << "\n";
+			outTime << this->getGameTurn() << "\n";
+			outTime.close();
+
+			int iCount = 0;
+
+			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+			{
+				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iI);
+				if (kPlayer.isEverAlive())
+				{
+					int score = kPlayer.calculateScore();
+					if (!kPlayer.isTurnActive()) {
+						outScore << "*";
+					}
+					else {
+						outScore << " ";
+					}
+					std::ostringstream convertScore;
+					convertScore << score;
+
+					std::ostringstream convertId;
+					convertId << kPlayer.getID();
+
+					std::ostringstream convertGameTurn;
+					convertGameTurn << GC.getGameINLINE().getGameTurn();
+
+					outScore << " --- " << (CvString)(kPlayer.getName()) << " --- " << convertScore.str() << " --- " << convertId.str() << "\n";
+
+					if (kPlayer.isConnected() && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
+						kPlayer.setPreviousConnected(true);
+						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- Connected --- ";
+						eventText += convertId.str()+ " --- "; 
+						eventText += convertGameTurn.str()	+ "\n";
+						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+					}
+
+					if (!(kPlayer.isConnected()) && (score!=kPlayer.getPreviousScore())) {
+						kPlayer.setPreviousScore(score);
+
+						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- ";
+						eventText+= convertScore.str() + " --- " + convertId.str() + " --- ";
+						eventText += convertGameTurn.str()	+ "\n";
+						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+					}					
+
+					if (!(kPlayer.isConnected()) && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
+						kPlayer.setPreviousConnected(false);
+
+						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- Disconnected --- ";
+						eventText += convertId.str() + " --- ";
+						eventText += convertGameTurn.str()	+ "\n";
+
+						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+					}
+
+				}
+			}
+			outScore.close();
+
+		}
+	}
 
 	if (!gDLL->GetWorldBuilderMode() || isInAdvancedStart())
 	{
@@ -3967,7 +4136,8 @@ bool CvGame::circumnavigationAvailable() const
 		return false;
 	}
 
-	if (kMap.getLandPlots() > ((kMap.numPlotsINLINE() * 2) / 3))
+	//T-hawk for Realms Beyond balance mod, change circumnavigation availability to a global define
+	if ((kMap.numPlotsINLINE() - kMap.getLandPlots()) < ((kMap.numPlotsINLINE() * GC.getDefineINT("CIRCUMNAVIGATE_MIN_WATER_PERCENT" ) / 100)))
 	{
 		return false;
 	}

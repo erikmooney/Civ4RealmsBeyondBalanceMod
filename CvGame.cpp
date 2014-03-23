@@ -2189,7 +2189,7 @@ void CvGame::update()
 						appendBeginAndResize("C:\\temp\\event.txt", eventText);
 					}
 
-					if (!(kPlayer.isConnected()) && (score!=kPlayer.getPreviousScore())) {
+					if (score!=kPlayer.getPreviousScore()) {
 						kPlayer.setPreviousScore(score);
 
 						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- ";

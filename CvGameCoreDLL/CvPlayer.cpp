@@ -6401,29 +6401,30 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		}
 	}
 
-	//Plako for Realms Beyond Balance mod
-	//Hard cap used for RB PB18 game
-	iPossibleKnownCount = 10;
+	//novice: Hard cap used to increase known tech boni for games with many players
+	int iPossibleKnownCountHardCap = GC.getDefineINT("TECH_COST_CIV_COUNT_HARD_CAP");
+	if(iPossibleKnownCountHardCap > 0 && iPossibleKnownCount < iPossibleKnownCountHardCap) {
+		iPossibleKnownCount = iPossibleKnownCountHardCap;
+	}
 
 	if (iPossibleKnownCount > 0)
 	{
-		//1st version - T-hawk for Realms Beyond balance mod
-		//Apply iModifier once for each known tech that enables map trading
-		//for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
-		//{
-		//	if (GET_TEAM(getTeam()).isHasTech((TechTypes)iI) && GC.getTechInfo((TechTypes)iI).isMapTrading())
-		//		iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
-		//}*/
-
-		//2nd version - Plako for Realms Beyond Balance mod use highest era and apply 
-		//iModifier with following pattern
-		//(game.getCurrentHighestEra*IModifier
-		int currentHighestEra = GC.getGameINLINE().getCurrentHighestEra();
-		iModifier += std::min(4, currentHighestEra) * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount);
-		if (currentHighestEra<4)
-			iModifier = std::min(150, iModifier);
-		else 
-			iModifier = std::min(175, iModifier);
+		float fMultiplierPerEra = GC.getDefineFLOAT("TECH_COST_MODIFIER_PER_ERA_MULTIPLIER");
+		if(fMultiplierPerEra == 0) {
+			// BTS implementation:
+			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
+		}
+		else {
+			//novice: 
+			//Use highest era and apply iModifier with following pattern (game.getCurrentHighestEra*IModifier*multiplier)
+			int iCurrentHighestEra = GC.getGameINLINE().getCurrentHighestEra();
+			int iMaximumEra = GC.getDefineINT("TECH_COST_MAXIMUM_ERA_CAP");
+			iModifier += (int)(std::min(iMaximumEra, iCurrentHighestEra) * fMultiplierPerEra * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount));
+			if (iCurrentHighestEra < iMaximumEra)
+				iModifier = std::min(GC.getDefineINT("TECH_COST_TOTAL_MODIFIER_EARLY_CAP"), iModifier);
+			else 
+				iModifier = std::min(GC.getDefineINT("TECH_COST_TOTAL_MODIFIER_ADVANCED_CAP"), iModifier);
+		}
 	}
 
 	int iPossiblePaths = 0;

@@ -1830,4 +1830,24 @@
 		<DefineName>CIRCUMNAVIGATE_MIN_WATER_PERCENT</DefineName>
  	  <fDefineFloatVal>55</fDefineFloatVal>
 	</Define>
+	<Define>
+		<DefineName>TECH_COST_CIV_COUNT_HARD_CAP</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_MODIFIER_PER_ERA_MULTIPLIER</DefineName>
+ 	  <fDefineFloatVal>1.0</fDefineFloatVal>
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_MAXIMUM_ERA_CAP</DefineName>
+		<iDefineIntVal>4</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_TOTAL_MODIFIER_EARLY_CAP</DefineName>
+		<iDefineIntVal>150</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_TOTAL_MODIFIER_ADVANCED_CAP</DefineName>
+		<iDefineIntVal>175</iDefineIntVal>
+	</Define>
 </Civ4Defines>

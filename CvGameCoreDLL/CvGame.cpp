@@ -2148,8 +2148,8 @@ void CvGame::update()
 			CvWString turnTimerText; 
 			getTurnTimerText(turnTimerText);
 
-			std::ofstream outTime("C:\\temp\\time.txt", std::ios::trunc);
-			std::ofstream outScore("C:\\temp\\score.txt", std::ios::trunc);
+			std::ofstream outTime(GC.getGameINLINE().getLogfilePath("time"), std::ios::trunc);
+			std::ofstream outScore(GC.getGameINLINE().getLogfilePath("score"), std::ios::trunc);
 			outTime << (CvString)turnTimerText << "\n"; 
 			outTime	<< timeString << "\n";
 			outTime << this->getGameTurnYear() << "\n";
@@ -2186,7 +2186,7 @@ void CvGame::update()
 						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- Connected --- ";
 						eventText += convertId.str()+ " --- "; 
 						eventText += convertGameTurn.str()	+ "\n";
-						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
 					}
 
 					if (score!=kPlayer.getPreviousScore()) {
@@ -2195,7 +2195,7 @@ void CvGame::update()
 						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- ";
 						eventText+= convertScore.str() + " --- " + convertId.str() + " --- ";
 						eventText += convertGameTurn.str()	+ "\n";
-						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
 					}					
 
 					if (!(kPlayer.isConnected()) && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
@@ -2205,7 +2205,7 @@ void CvGame::update()
 						eventText += convertId.str() + " --- ";
 						eventText += convertGameTurn.str()	+ "\n";
 
-						appendBeginAndResize("C:\\temp\\event.txt", eventText);
+						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
 					}
 
 				}
@@ -5703,6 +5703,11 @@ const CvWString & CvGame::getName()
 	return GC.getInitCore().getGameName();
 }
 
+// novice - monitor
+CvString CvGame::getLogfilePath(const CvString& fileName)
+{
+	return CvString::format("c:\\temp\\{0}_{1}.txt", fileName, GC.getInitCore().getGameName());
+}
 
 void CvGame::setName(const TCHAR* szName)
 {

@@ -9936,7 +9936,7 @@ void CvPlayer::setEndTurn(bool bNewValue)
 					CvString eventText = timeString + " --- " + (CvString)(getName()) + " --- END TURN --- ";
 					eventText += convertId.str() + " --- ";
 					eventText += convertGameTurn.str() + "\n";
-					GC.getGameINLINE().appendBeginAndResize("C:\\temp\\event.txt", eventText);
+					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
 
 				}
 			}

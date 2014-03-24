@@ -547,6 +547,8 @@ public:
 	//Plako for RBMod (monitor)
 	void appendBeginAndResize(CvString filepath, CvString inputData);
 	bool replace(CvString& str, const CvString& from, CvString& to);
+	// novice - monitor
+	CvString getLogfilePath(const CvString& fileName);
 
 protected:
 	int m_iElapsedGameTurns;

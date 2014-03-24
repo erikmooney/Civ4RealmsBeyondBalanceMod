@@ -1690,4 +1690,8 @@
 		<DefineName>TECH_COST_TOTAL_MODIFIER_ADVANCED_CAP</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>SLAVERY_NERF_ENABLED</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
 </Civ4Defines>

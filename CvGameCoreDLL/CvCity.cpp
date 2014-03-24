@@ -4683,7 +4683,7 @@ int CvCity::getHurryPopulation(HurryTypes eHurry, int iHurryCost) const
 	//T-hawk for Realms Beyond rebalance mod.
 	//Slavery gives 30H for first population whipped, 20 for each additional.
 	//If hurry population > 1, population beyond the first yields only 2/3.
-	if (iPopulation > 0)
+	if (iPopulation > 0 && GC.getDefineINT("SLAVERY_NERF_ENABLED") > 0)
 	{
 		//sample cases:
 		//29H : the above calc comes to 28/30 and we never get here
@@ -4706,16 +4706,21 @@ int CvCity::hurryProduction(HurryTypes eHurry) const
 
 	if (GC.getHurryInfo(eHurry).getProductionPerPopulation() > 0)
 	{
-		//iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
-		//T-hawk for Realms Beyond rebalance mod, see above
-		//First try 1 population and see if it is enough
-		iProduction = (100 * getExtraProductionDifference(1 * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
-		if (iProduction < productionLeft())
-		{
-			//More than 1 population needed, now add the rest
-			iProduction += (100 * getExtraProductionDifference((hurryPopulation(eHurry) - 1) * GC.getGameINLINE().getProductionPerPopulation(eHurry) * 2 / 3)) / std::max(1, getHurryCostModifier());
-		} //end mod
-
+		if(GC.getDefineINT("SLAVERY_NERF_ENABLED") > 0) {
+			//iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+			//T-hawk for Realms Beyond rebalance mod, see above
+			//First try 1 population and see if it is enough
+			iProduction = (100 * getExtraProductionDifference(1 * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+			if (iProduction < productionLeft())
+			{
+				//More than 1 population needed, now add the rest
+				iProduction += (100 * getExtraProductionDifference((hurryPopulation(eHurry) - 1) * GC.getGameINLINE().getProductionPerPopulation(eHurry) * 2 / 3)) / std::max(1, getHurryCostModifier());
+			} //end mod
+		}
+		else {
+			// BTS implementation:
+			iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier());
+		}
 		FAssert(iProduction >= productionLeft());
 	}
 	else

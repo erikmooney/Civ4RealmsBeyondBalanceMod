@@ -1710,5 +1710,9 @@
 		<DefineName>ENABLE_NO_ESPIONAGE_FIX</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>OWN_CITY_FAIL_GOLD_MULTIPLIER</DefineName>
+		<fDefineFloatVal>1</fDefineFloatVal>
+	</Define>
 	
 </Civ4Defines>

@@ -1836,7 +1836,7 @@
 	</Define>
 	<Define>
 		<DefineName>TECH_COST_MODIFIER_PER_ERA_MULTIPLIER</DefineName>
- 	  <fDefineFloatVal>1.0</fDefineFloatVal>
+		<fDefineFloatVal>1.0</fDefineFloatVal>
 	</Define>
 	<Define>
 		<DefineName>TECH_COST_MAXIMUM_ERA_CAP</DefineName>
@@ -1869,6 +1869,10 @@
 	<Define>
 		<DefineName>ENABLE_NO_ESPIONAGE_FIX</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>OWN_CITY_FAIL_GOLD_MULTIPLIER</DefineName>
+		<fDefineFloatVal>0</fDefineFloatVal>
 	</Define>
 	
 </Civ4Defines>

@@ -1858,4 +1858,8 @@
 		<DefineName>ENABLE_EXECUTIVE_SPAWNS_FOR_STRAGGLERS</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>ENABLE_FINANCIAL_RIVERSIDE_PENALTY</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 </Civ4Defines>

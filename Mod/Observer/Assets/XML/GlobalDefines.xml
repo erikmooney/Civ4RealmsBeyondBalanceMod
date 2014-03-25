@@ -1694,4 +1694,8 @@
 		<DefineName>SLAVERY_NERF_ENABLED</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>ENABLE_EXECUTIVE_SPAWNS_FOR_STRAGGLERS</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
 </Civ4Defines>

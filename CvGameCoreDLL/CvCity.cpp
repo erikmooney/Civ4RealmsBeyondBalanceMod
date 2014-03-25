@@ -5445,8 +5445,13 @@ int CvCity::calculateDistanceMaintenanceTimes100() const
 
 		//T-hawk for Realms Beyond balance mod
 		//For toroidal maps, calculate distance factor as if cylindrical (see CvMap for the implementation)
-		//iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
-		iTempMaintenance /= GC.getMapINLINE().maxPlotDistanceToroidalAsCylindrical();
+		//novice: Added global define to enable this behaviour
+		if(GC.getDefineINT("ENABLE_TREAT_TOROIDAL_MAINTENANCE_AS_CYLINDRICAL") > 0) {
+			iTempMaintenance /= GC.getMapINLINE().maxPlotDistanceToroidalAsCylindrical();
+		}
+		else {
+			iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
+		}
 
 		iWorstCityMaintenance = std::max(iWorstCityMaintenance, iTempMaintenance);
 

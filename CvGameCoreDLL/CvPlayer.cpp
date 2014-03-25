@@ -6403,8 +6403,12 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 
 	//novice: Hard cap used to increase known tech boni for games with many players
 	int iPossibleKnownCountHardCap = GC.getDefineINT("TECH_COST_CIV_COUNT_HARD_CAP");
-	if(iPossibleKnownCountHardCap > 0 && iPossibleKnownCount < iPossibleKnownCountHardCap) {
-		iPossibleKnownCount = iPossibleKnownCountHardCap;
+	if(iPossibleKnownCountHardCap > 0) {
+		// There's a hard cap; cap the number of civs at the hard cap.
+		// This increases known tech boni for games with more players than the hard cap.
+		if(iPossibleKnownCount > iPossibleKnownCountHardCap) {
+			iPossibleKnownCount = iPossibleKnownCountHardCap;
+		}
 	}
 
 	if (iPossibleKnownCount > 0)
@@ -6415,10 +6419,10 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
 		}
 		else {
-			//novice: 
-			//Use highest era and apply iModifier with following pattern (game.getCurrentHighestEra*IModifier*multiplier)
+			//novice RB Mod known tech bonus implementation: 
 			int iCurrentHighestEra = GC.getGameINLINE().getCurrentHighestEra();
 			int iMaximumEra = GC.getDefineINT("TECH_COST_MAXIMUM_ERA_CAP");
+			//Use highest era (possibly capped) and multiply with the fraction of contacts knowing the tech, TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER, and TECH_COST_MODIFIER_PER_ERA_MULTIPLIER
 			iModifier += (int)(std::min(iMaximumEra, iCurrentHighestEra) * fMultiplierPerEra * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount));
 			if (iCurrentHighestEra < iMaximumEra)
 				iModifier = std::min(GC.getDefineINT("TECH_COST_TOTAL_MODIFIER_EARLY_CAP"), iModifier);

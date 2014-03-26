@@ -32,6 +32,9 @@
 #include "CvDLLFAStarIFaceBase.h"
 #include "CvDLLPythonIFaceBase.h"
 
+//plako for Rbmod (monitor)
+#include <sstream>
+
 // Public Functions...
 
 CvPlayer::CvPlayer()
@@ -6398,6 +6401,9 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		}
 	}
 
+	//Plako for Realms Beyond Balance mod
+	//Hard cap used for RB PB18 game
+	iPossibleKnownCount = 10;
 
 	if (iPossibleKnownCount > 0)
 	{
@@ -6412,9 +6418,12 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		//2nd version - Plako for Realms Beyond Balance mod use highest era and apply 
 		//iModifier with following pattern
 		//(game.getCurrentHighestEra*IModifier
-		iModifier += GC.getGameINLINE().getCurrentHighestEra() * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount);
-
-
+		int currentHighestEra = GC.getGameINLINE().getCurrentHighestEra();
+		iModifier += std::min(4, currentHighestEra) * ((GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount);
+		if (currentHighestEra<4)
+			iModifier = std::min(150, iModifier);
+		else 
+			iModifier = std::min(175, iModifier);
 	}
 
 	int iPossiblePaths = 0;
@@ -9904,6 +9913,32 @@ void CvPlayer::setEndTurn(bool bNewValue)
 		if (isEndTurn())
 		{
 			setAutoMoves(true);
+
+			//Plako for RBmod (monitor)
+			if (gDLL->IsPitbossHost()) {
+				if (bNewValue)  {
+					time_t rawtime;
+					struct tm * timeinfo;
+					time ( &rawtime );
+					timeinfo = localtime ( &rawtime );
+					CvString timeString = asctime (timeinfo);					
+					CvString from = "\n";
+					CvString to = " ";
+					GC.getGameINLINE().replace(timeString, from, to);
+					
+					std::ostringstream convertId;
+					convertId << getID();
+
+					std::ostringstream convertGameTurn;
+					convertGameTurn << GC.getGameINLINE().getGameTurn();
+
+					CvString eventText = timeString + " --- " + (CvString)(getName()) + " --- END TURN --- ";
+					eventText += convertId.str() + " --- ";
+					eventText += convertGameTurn.str() + "\n";
+					GC.getGameINLINE().appendBeginAndResize("C:\\temp\\event.txt", eventText);
+
+				}
+			}
 		}
 	}
 }

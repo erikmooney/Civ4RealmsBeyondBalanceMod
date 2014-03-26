@@ -1044,6 +1044,12 @@ public:
 	virtual int AI_maxGoldPerTurnTrade(PlayerTypes ePlayer) const = 0;
 	virtual int AI_maxGoldTrade(PlayerTypes ePlayer) const = 0;
 
+	//Plako for RBmod (monitor)
+	bool getPreviousConnected() {return m_bPreviousConnected;};
+	void setPreviousConnected(bool previousConnected) { m_bPreviousConnected=previousConnected;};
+	int getPreviousScore() {return m_iPreviousScore;};
+	void setPreviousScore(int previousScore) { m_iPreviousScore=previousScore;};
+
 protected:
 
 	int m_iStartingX;
@@ -1154,6 +1160,9 @@ protected:
 	bool m_bFoundedFirstCity;
 	bool m_bStrike;
 	bool m_bHuman;
+	//Plako for RBmod (monitor)
+	bool m_bPreviousConnected;
+	int m_iPreviousScore;
 	
 	PlayerTypes m_eID;
 	LeaderHeadTypes m_ePersonalityType;

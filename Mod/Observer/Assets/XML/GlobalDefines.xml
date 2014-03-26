@@ -1714,5 +1714,13 @@
 		<DefineName>OWN_CITY_FAIL_GOLD_MULTIPLIER</DefineName>
 		<fDefineFloatVal>1</fDefineFloatVal>
 	</Define>
+	<Define>
+		<DefineName>ENABLE_PITBOSS_PORTAL_LOGGING</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>PITBOSS_PORTAL_LOG_DIRECTORY</DefineName>
+		<DefineTextVal>c:/temp</DefineTextVal>
+	</Define>
 	
 </Civ4Defines>

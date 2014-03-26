@@ -2131,7 +2131,7 @@ void CvGame::update()
 
 	//Plako for RBmod (monitor)
 	//1 slice is 250 ms. Write data once per second to file
-	if (gDLL->IsPitbossHost()) {
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
 		if ((getTurnSlice() % 4) == 0) {
 			
 			time_t rawtime;
@@ -5706,7 +5706,11 @@ const CvWString & CvGame::getName()
 // novice - monitor
 CvString CvGame::getLogfilePath(const CvString& fileName)
 {
-	return CvString::format("c:\\temp\\{0}_{1}.txt", fileName, GC.getInitCore().getGameName());
+	std::stringstream convert;
+	CvString *gameName = new CvString(GC.getInitCore().getGameName().GetCString()); // Converts wide string to narrow string
+	convert << GC.getDefineSTRING("PITBOSS_PORTAL_LOG_DIRECTORY") << "/" << gameName->c_str() << "_" << fileName << ".txt";
+	delete gameName;
+	return convert.str();
 }
 
 void CvGame::setName(const TCHAR* szName)
@@ -5883,6 +5887,13 @@ void CvGame::doTurn()
 	stopProfilingDLL();
 
 	gDLL->getEngineIFace()->AutoSave();
+
+	// novice - monitor: Log game state at start of turn
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
+		std::ostringstream convertGameTurn;
+		convertGameTurn << GC.getGameINLINE().getGameTurn();
+		GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("gamestate_sot" + convertGameTurn.str()), "State of game: Start of turn " + convertGameTurn.str());
+	}
 }
 
 

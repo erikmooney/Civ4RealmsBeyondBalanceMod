@@ -269,6 +269,9 @@ void CvGame::init(HandicapTypes eHandicap)
 	AI_init();
 
 	doUpdateCacheOnTurn();
+
+	// novice: Log game state when game's initialized
+	GC.getGameINLINE().logGameStateString(NO_PLAYER);
 }
 
 //
@@ -5713,6 +5716,52 @@ CvString CvGame::getLogfilePath(const CvString& fileName)
 	return convert.str();
 }
 
+// novice - monitor
+void CvGame::logGameStateString(PlayerTypes playerEndingTurn) {
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
+		std::stringstream filename;
+		filename << "gamestate_";
+		std::ostringstream convertGameTurn;
+		convertGameTurn << getGameTurn();
+
+		if(playerEndingTurn == NO_PLAYER) {
+			filename << "sot" << convertGameTurn.str();
+		}
+		else {
+			filename << "eot" << convertGameTurn.str() << "_player";
+			std::ostringstream convertPlayerId;
+			convertPlayerId << playerEndingTurn;
+			filename << convertPlayerId.str();
+		}
+		appendBeginAndResize(getLogfilePath(filename.str()), getGameStateString());
+	}
+}
+
+// novice - monitor/observer. Call into python function getGameStateString in file CvGameInterface.py to get a string representation of the current game state
+CvString CvGame::getGameStateString()
+{
+	try
+	{
+		CvWStringBuffer szBuffer;
+		CvWString szGameState;
+		CyArgsList argsList;
+		argsList.add(0);
+		gDLL->getPythonIFace()->callFunction(PYGameModule, "getGameStateString", argsList.makeFunctionArgs(), &szGameState);
+		szBuffer.append(szGameState);
+		std::wstring gameState = szBuffer.getCString();
+		CvString *gameStateN = new CvString(gameState);
+		std::stringstream convert;
+		convert << gameStateN->c_str();
+		delete gameStateN;
+		return convert.str();
+	}
+	catch(std::exception & e) {
+		std::stringstream ex;
+		ex << "{ \"error\": \"Error getting game state from python: " << e.what() << "\"}";
+		return ex.str();
+	}
+}
+
 void CvGame::setName(const TCHAR* szName)
 {
 	GC.getInitCore().setGameName(szName);
@@ -5889,11 +5938,7 @@ void CvGame::doTurn()
 	gDLL->getEngineIFace()->AutoSave();
 
 	// novice - monitor: Log game state at start of turn
-	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
-		std::ostringstream convertGameTurn;
-		convertGameTurn << GC.getGameINLINE().getGameTurn();
-		GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("gamestate_sot" + convertGameTurn.str()), "State of game: Start of turn " + convertGameTurn.str());
-	}
+	GC.getGameINLINE().logGameStateString(NO_PLAYER);
 }
 
 

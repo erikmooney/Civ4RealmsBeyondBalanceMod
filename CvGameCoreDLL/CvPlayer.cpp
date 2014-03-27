@@ -9941,7 +9941,8 @@ void CvPlayer::setEndTurn(bool bNewValue)
 					eventText += convertId.str() + " --- ";
 					eventText += convertGameTurn.str() + "\n";
 					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
-					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("gamestate_eot" + convertGameTurn.str() + "_player" + convertId.str()), "State of game: Player " + convertId.str() + " just ended turn " + convertGameTurn.str());
+					// Novice: Log game state when player ends turn
+					GC.getGameINLINE().logGameStateString(getID());
 				}
 			}
 		}

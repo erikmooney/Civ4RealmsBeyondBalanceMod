@@ -549,6 +549,10 @@ public:
 	bool replace(CvString& str, const CvString& from, CvString& to);
 	// novice - monitor
 	CvString getLogfilePath(const CvString& fileName);
+	// novice - monitor
+	CvString CvGame::getGameStateString();
+	// novice - monitor
+	void CvGame::logGameStateString(PlayerTypes playerEndingTurn);
 
 protected:
 	int m_iElapsedGameTurns;

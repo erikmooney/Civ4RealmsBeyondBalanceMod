@@ -1882,5 +1882,9 @@
 		<DefineName>PITBOSS_PORTAL_LOG_DIRECTORY</DefineName>
 		<DefineTextVal>c:/temp</DefineTextVal>
 	</Define>
+	<Define>
+		<DefineName>ENABLE_PITBOSS_PORTAL_GAMESTATE_LOGGING</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 	
 </Civ4Defines>

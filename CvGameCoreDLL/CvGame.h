@@ -553,6 +553,10 @@ public:
 	CvString CvGame::getGameStateString();
 	// novice - monitor
 	void CvGame::logGameStateString(PlayerTypes playerEndingTurn);
+	// novice
+	void CvGame::logEvent(PlayerTypes player, const CvString& eventType);
+	// novice
+	CvString CvGame::getLocalTimeString();
 
 protected:
 	int m_iElapsedGameTurns;
@@ -697,7 +701,8 @@ protected:
 	CvPlot* normalizeFindLakePlot(PlayerTypes ePlayer);
 
 	void doUpdateCacheOnTurn();
-  //Plako for Rbmod (monitor)
+    
+	//Plako for Rbmod (monitor)
 	void getTurnTimerText(CvWString& strText);
 };
 

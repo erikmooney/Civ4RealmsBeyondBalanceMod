@@ -9922,25 +9922,7 @@ void CvPlayer::setEndTurn(bool bNewValue)
 			//Plako for RBmod (monitor)
 			if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
 				if (bNewValue)  {
-					time_t rawtime;
-					struct tm * timeinfo;
-					time ( &rawtime );
-					timeinfo = localtime ( &rawtime );
-					CvString timeString = asctime (timeinfo);					
-					CvString from = "\n";
-					CvString to = " ";
-					GC.getGameINLINE().replace(timeString, from, to);
-					
-					std::ostringstream convertId;
-					convertId << getID();
-
-					std::ostringstream convertGameTurn;
-					convertGameTurn << GC.getGameINLINE().getGameTurn();
-
-					CvString eventText = timeString + " --- " + (CvString)(getName()) + " --- END TURN --- ";
-					eventText += convertId.str() + " --- ";
-					eventText += convertGameTurn.str() + "\n";
-					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
+					GC.getGameINLINE().logEvent(getID(), "END TURN");
 					// Novice: Log game state when player ends turn
 					GC.getGameINLINE().logGameStateString(getID());
 				}

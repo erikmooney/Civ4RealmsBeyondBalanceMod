@@ -9920,13 +9920,9 @@ void CvPlayer::setEndTurn(bool bNewValue)
 			setAutoMoves(true);
 
 			//Plako for RBmod (monitor)
-			if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
-				if (bNewValue)  {
-					GC.getGameINLINE().logEvent(getID(), "END TURN");
-					// Novice: Log game state when player ends turn
-					GC.getGameINLINE().logGameStateString(getID());
-				}
-			}
+			GC.getGameINLINE().logEvent(getID(), "END TURN");
+			// Novice: Log game state when player ends turn
+			GC.getGameINLINE().logGameStateString(getID());
 		}
 	}
 }

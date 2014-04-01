@@ -4760,7 +4760,7 @@ bool CvGame::isPaused() const
 void CvGame::setPausePlayer(PlayerTypes eNewValue)
 {
 	// novice: Log event for game being paused/unpaused
-	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0 && m_ePausePlayer != eNewValue) {
+	if(m_ePausePlayer != eNewValue) {
 		if(eNewValue == NO_PLAYER) {
 			GC.getGameINLINE().logEvent(eNewValue, "Game unpaused");
 		}
@@ -5701,25 +5701,27 @@ const CvWString & CvGame::getName()
 // novice
 void CvGame::logEvent(PlayerTypes player, const CvString& eventType)
 {
-	CvString eventText = getLocalTimeString() + " --- ";
-	if(player == NO_PLAYER) {
-		eventText += "NO PLAYER";
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
+		CvString eventText = getLocalTimeString() + " --- ";
+		if(player == NO_PLAYER) {
+			eventText += "NO PLAYER";
+		}
+		else {
+			CvPlayer& kPlayer = GET_PLAYER(player);
+			eventText += (CvString)(kPlayer.getName());
+		}
+		eventText += " --- " + eventType + " --- ";
+
+		std::ostringstream convertPlayerId;
+		convertPlayerId << player;
+		eventText += convertPlayerId.str()+ " --- "; 
+
+		std::ostringstream convertGameTurn;
+		convertGameTurn << getGameTurn();
+		eventText += convertGameTurn.str() + "\n";
+
+		appendBeginAndResize(getLogfilePath("event"), eventText);
 	}
-	else {
-		CvPlayer& kPlayer = GET_PLAYER(player);
-		eventText += (CvString)(kPlayer.getName());
-	}
-	eventText += " --- " + eventType + " --- ";
-
-	std::ostringstream convertPlayerId;
-	convertPlayerId << player;
-	eventText += convertPlayerId.str()+ " --- "; 
-
-	std::ostringstream convertGameTurn;
-	convertGameTurn << getGameTurn();
-	eventText += convertGameTurn.str() + "\n";
-
-	appendBeginAndResize(getLogfilePath("event"), eventText);
 }
 
 // novice
@@ -5975,6 +5977,8 @@ void CvGame::doTurn()
 
 	// novice - monitor: Log game state at start of turn
 	GC.getGameINLINE().logGameStateString(NO_PLAYER);
+	// novice: Log event when turn starts so that the turn roll is immediately recorded
+	GC.getGameINLINE().logEvent(NO_PLAYER, "New turn");
 }
 
 

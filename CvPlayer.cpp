@@ -12454,6 +12454,11 @@ void CvPlayer::clearDiplomacy()
 
 const CvDiploQueue& CvPlayer::getDiplomacy() const
 {
+	//Plako for RBmod - (pause+diplo window problem fix)
+	if (GC.getGameINLINE().isPaused()) {
+		return m_listDiplomacyEmpty;
+	}
+	
 	return (m_listDiplomacy);
 }
 

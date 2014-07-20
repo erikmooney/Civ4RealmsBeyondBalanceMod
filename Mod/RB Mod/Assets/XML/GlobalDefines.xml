@@ -1848,11 +1848,11 @@
 	</Define>
 	<Define>
 		<DefineName>TECH_COST_TOTAL_MODIFIER_EARLY_CAP</DefineName>
-		<iDefineIntVal>150</iDefineIntVal>
+		<iDefineIntVal>160</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TECH_COST_TOTAL_MODIFIER_ADVANCED_CAP</DefineName>
-		<iDefineIntVal>175</iDefineIntVal>
+		<iDefineIntVal>180</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>SLAVERY_NERF_ENABLED</DefineName>

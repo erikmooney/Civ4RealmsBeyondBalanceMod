@@ -1835,6 +1835,10 @@
 		<iDefineIntVal>10</iDefineIntVal>
 	</Define>
 	<Define>
+		<DefineName>TECH_COST_CIV_COUNT_HARD_CAP_LOWER</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>TECH_COST_MODIFIER_PER_ERA_MULTIPLIER</DefineName>
 		<fDefineFloatVal>1.0</fDefineFloatVal>
 	</Define>

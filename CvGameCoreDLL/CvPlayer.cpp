@@ -6411,6 +6411,16 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		}
 	}
 
+	//novice: Hard lower cap used to decrease known tech boni for games with few players
+	int iPossibleKnownCountHardCapLower = GC.getDefineINT("TECH_COST_CIV_COUNT_HARD_CAP_LOWER");
+	if(iPossibleKnownCountHardCapLower > 0) {
+		// There's a hard cap; cap the number of civs at the hard cap.
+		// This decreases known tech boni for games with fewer players than the hard cap.
+		if(iPossibleKnownCount < iPossibleKnownCountHardCapLower) {
+			iPossibleKnownCount = iPossibleKnownCountHardCapLower;
+		}
+	}
+
 	if (iPossibleKnownCount > 0)
 	{
 		float fMultiplierPerEra = GC.getDefineFLOAT("TECH_COST_MODIFIER_PER_ERA_MULTIPLIER");

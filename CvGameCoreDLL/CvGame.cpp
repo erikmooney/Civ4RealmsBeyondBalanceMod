@@ -2183,10 +2183,22 @@ void CvGame::update()
 					if (kPlayer.isConnected() && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
 						kPlayer.setPreviousConnected(true);
 						GC.getGameINLINE().logEvent(kPlayer.getID(), "Connected");
+						// Trigger recovery save
+						if(GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+							CvString saveName = (CvString)(kPlayer.getName()) + "_connected_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+							CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+							gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
+						}
 					}
 					if (!(kPlayer.isConnected()) && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
 						kPlayer.setPreviousConnected(false);
 						GC.getGameINLINE().logEvent(kPlayer.getID(), "Disconnected");
+						// Trigger recovery save
+						if(GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+							CvString saveName = (CvString)(kPlayer.getName()) + "_disconnected_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+							CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+							gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
+						}
 					}
 					int score = kPlayer.calculateScore();
 					if (score!=kPlayer.getPreviousScore()) {
@@ -5725,7 +5737,7 @@ void CvGame::logEvent(PlayerTypes player, const CvString& eventType)
 }
 
 // novice
-CvString CvGame::getLocalTimeString()
+CvString CvGame::getLocalTimeString(bool removeColons)
 {
 	time_t rawtime;
 	struct tm * timeinfo;
@@ -5737,17 +5749,35 @@ CvString CvGame::getLocalTimeString()
 	CvString to = " ";
 
 	replace(timeString, from, to);
+
+	if(removeColons) {
+		CvString colon = ":";
+		CvString colonReplacement = "_";
+		bool found = replace(timeString, colon, colonReplacement);
+		while(found) {
+			found = replace(timeString, colon, colonReplacement);
+		}
+		CvString space = " ";
+		found = replace(timeString, space, colonReplacement);
+		while(found) {
+			found = replace(timeString, space, colonReplacement);
+		}
+	}
+
 	std::stringstream convert;
 	convert << timeString;
 	return convert.str();
 }
 
 // novice - monitor
-CvString CvGame::getLogfilePath(const CvString& fileName)
+CvString CvGame::getLogfilePath(const CvString& fileName, bool addExtension)
 {
 	std::stringstream convert;
 	CvString *gameName = new CvString(GC.getInitCore().getGameName().GetCString()); // Converts wide string to narrow string
-	convert << GC.getDefineSTRING("PITBOSS_PORTAL_LOG_DIRECTORY") << "/" << gameName->c_str() << "_" << fileName << ".txt";
+	convert << GC.getDefineSTRING("PITBOSS_PORTAL_LOG_DIRECTORY") << "/" << gameName->c_str() << "_" << fileName;
+	if(addExtension) {
+		convert << ".txt";
+	}
 	delete gameName;
 	return convert.str();
 }

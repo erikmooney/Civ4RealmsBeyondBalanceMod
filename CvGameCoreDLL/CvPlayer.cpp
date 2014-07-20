@@ -9933,6 +9933,12 @@ void CvPlayer::setEndTurn(bool bNewValue)
 			GC.getGameINLINE().logEvent(getID(), "END TURN");
 			// Novice: Log game state when player ends turn
 			GC.getGameINLINE().logGameStateString(getID());
+			// Novice: Trigger autosave if in pitboss mode
+			if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+				CvString saveName = (CvString)(getName()) + "_end_turn_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+				CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+				gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
+			}
 		}
 	}
 }

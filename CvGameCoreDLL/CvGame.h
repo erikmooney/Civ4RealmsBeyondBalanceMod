@@ -548,7 +548,7 @@ public:
 	void appendBeginAndResize(CvString filepath, CvString inputData);
 	bool replace(CvString& str, const CvString& from, CvString& to);
 	// novice - monitor
-	CvString getLogfilePath(const CvString& fileName);
+	CvString getLogfilePath(const CvString& fileName, bool addExtension = true);
 	// novice - monitor
 	CvString CvGame::getGameStateString();
 	// novice - monitor
@@ -556,7 +556,7 @@ public:
 	// novice
 	void CvGame::logEvent(PlayerTypes player, const CvString& eventType);
 	// novice
-	CvString CvGame::getLocalTimeString();
+	CvString CvGame::getLocalTimeString(bool removeColons = false);
 
 protected:
 	int m_iElapsedGameTurns;

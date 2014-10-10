@@ -1251,6 +1251,9 @@ protected:
 	CvPopupQueue m_listPopups;
 	CvDiploQueue m_listDiplomacy; 
 
+	// novice for RtR
+	CvDiploQueue m_listDiplomacyEmpty;
+
 	CvTurnScoreMap m_mapScoreHistory;
 	CvTurnScoreMap m_mapEconomyHistory;
 	CvTurnScoreMap m_mapIndustryHistory;

@@ -12454,6 +12454,9 @@ void CvPlayer::clearDiplomacy()
 
 const CvDiploQueue& CvPlayer::getDiplomacy() const
 {
+	if (GC.getGameINLINE().isPaused() && GC.getGameINLINE().isPitboss() && GC.getDefineINT("ENABLE_PITBOSS_PAUSE_FIX") > 0) {
+        return m_listDiplomacyEmpty;
+    }
 	return (m_listDiplomacy);
 }
 

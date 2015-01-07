@@ -13070,9 +13070,11 @@ m_iHillsChange(0),
 m_iPeakChange(0),
 m_iLakeChange(0),
 m_iCityChange(0),
+m_iCapitalChange(0), // AGDM addition
 m_iPopulationChangeOffset(0),
 m_iPopulationChangeDivisor(0),
 m_iMinCity(0),
+m_iMinCapital(0), // AGDM addition
 m_iTradeModifier(0),
 m_iGoldenAgeYield(0),
 m_iGoldenAgeYieldThreshold(0),
@@ -13125,6 +13127,11 @@ int CvYieldInfo::getCityChange() const
 	return m_iCityChange; 
 }
 
+int CvYieldInfo::getCapitalChange() const // AGDM addition
+{
+	return m_iCapitalChange; 
+}
+
 int CvYieldInfo::getPopulationChangeOffset() const
 {
 	return m_iPopulationChangeOffset; 
@@ -13138,6 +13145,11 @@ int CvYieldInfo::getPopulationChangeDivisor() const
 int CvYieldInfo::getMinCity() const		
 {
 	return m_iMinCity; 
+}
+
+int CvYieldInfo::getMinCapital() const		// AGDM addition
+{
+	return m_iMinCapital; 
 }
 
 int CvYieldInfo::getTradeModifier() const
@@ -13188,9 +13200,11 @@ bool CvYieldInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iPeakChange, "iPeakChange");
 	pXML->GetChildXmlValByName(&m_iLakeChange, "iLakeChange");
 	pXML->GetChildXmlValByName(&m_iCityChange, "iCityChange");
+	pXML->GetChildXmlValByName(&m_iCapitalChange, "iCapitalChange"); // AGDM addition
 	pXML->GetChildXmlValByName(&m_iPopulationChangeOffset, "iPopulationChangeOffset");
 	pXML->GetChildXmlValByName(&m_iPopulationChangeDivisor, "iPopulationChangeDivisor");
 	pXML->GetChildXmlValByName(&m_iMinCity, "iMinCity");
+	pXML->GetChildXmlValByName(&m_iMinCapital, "iMinCapital"); // AGDM addition
 	pXML->GetChildXmlValByName(&m_iTradeModifier, "iTradeModifier");
 	pXML->GetChildXmlValByName(&m_iGoldenAgeYield, "iGoldenAgeYield");
 	pXML->GetChildXmlValByName(&m_iGoldenAgeYieldThreshold, "iGoldenAgeYieldThreshold");

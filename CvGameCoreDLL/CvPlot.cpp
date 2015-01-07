@@ -5874,6 +5874,7 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	RouteTypes eRoute;
 	PlayerTypes ePlayer;
 	bool bCity;
+	bool bCapital;
 	int iYield;
 
 	if (bDisplay && GC.getGameINLINE().isDebugMode())
@@ -5892,6 +5893,7 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	}
 
 	bCity = false;
+	bCapital = false;
 
 	if (bDisplay)
 	{
@@ -5932,6 +5934,11 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 			if (!bDisplay || pCity->isRevealed(GC.getGameINLINE().getActiveTeam(), false))
 			{
 				iYield += GC.getYieldInfo(eYield).getCityChange();
+				if(pCity->isCapital()) {
+					// AGDM addition
+					iYield += GC.getYieldInfo(eYield).getCapitalChange();
+					bCapital = true;
+				}
 				if (GC.getYieldInfo(eYield).getPopulationChangeDivisor() != 0)
 				{
 					iYield += ((pCity->getPopulation() + GC.getYieldInfo(eYield).getPopulationChangeOffset()) / GC.getYieldInfo(eYield).getPopulationChangeDivisor());
@@ -5978,6 +5985,11 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	if (bCity)
 	{
 		iYield = std::max(iYield, GC.getYieldInfo(eYield).getMinCity());
+		if (bCapital)
+		{
+			// AGDM addition
+			iYield = std::max(iYield, GC.getYieldInfo(eYield).getMinCapital());
+		}
 	}
 
 	iYield += GC.getGameINLINE().getPlotExtraYield(m_iX, m_iY, eYield);

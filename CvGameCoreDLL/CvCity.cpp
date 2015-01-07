@@ -308,6 +308,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	{
 		GC.getGameINLINE().updatePlotGroups();
 	}
+	pPlot->updateYield(); // AGDM addition
 
 	AI_init();
 }

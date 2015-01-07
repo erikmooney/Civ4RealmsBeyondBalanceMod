@@ -3261,9 +3261,11 @@ public:
 	int getPeakChange() const;				// Exposed to Python
 	int getLakeChange() const;				// Exposed to Python
 	int getCityChange() const;				// Exposed to Python
+	int getCapitalChange() const;				// Exposed to Python, AGDM addition
 	int getPopulationChangeOffset() const;				// Exposed to Python
 	int getPopulationChangeDivisor() const;				// Exposed to Python
 	int getMinCity() const;				// Exposed to Python
+	int getMinCapital() const;				// Exposed to Python. AGDM addition
 	int getTradeModifier() const;				// Exposed to Python
 	int getGoldenAgeYield() const;				// Exposed to Python
 	int getGoldenAgeYieldThreshold() const;				// Exposed to Python
@@ -3284,9 +3286,11 @@ protected:
 	int m_iPeakChange;
 	int m_iLakeChange;
 	int m_iCityChange;							
+	int m_iCapitalChange; // AGDM addition
 	int m_iPopulationChangeOffset;		
 	int m_iPopulationChangeDivisor;		
 	int m_iMinCity;									
+	int m_iMinCapital; // AGDM addition
 	int m_iTradeModifier;						
 	int m_iGoldenAgeYield;					
 	int m_iGoldenAgeYieldThreshold;		

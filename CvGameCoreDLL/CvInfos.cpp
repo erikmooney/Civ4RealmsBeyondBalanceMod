@@ -5305,6 +5305,15 @@ m_piSpecialistExtraCommerce(NULL),
 m_paiBuildingHappinessChanges(NULL),
 m_paiBuildingHealthChanges(NULL),
 m_paiFeatureHappinessChanges(NULL),
+
+m_ppiBuildingYieldChanges(NULL),				// AGDM addition
+m_ppiBuildingYieldModifiers(NULL),				// AGDM addition
+m_ppiBuildingCommerceChanges(NULL),				// AGDM addition
+m_ppiBuildingCommerceModifiers(NULL),			// AGDM addition
+m_ppiBuildingFreeSpecialistCounts(NULL),		// AGDM addition
+m_paiBuildingMilitaryProductionModifiers(NULL),	// AGDM addition
+m_paiBuildingFreeExperiences(NULL),				// AGDM addition
+
 m_pabHurry(NULL),
 m_pabSpecialBuildingNotRequired(NULL),
 m_pabSpecialistValid(NULL),
@@ -5332,6 +5341,15 @@ CvCivicInfo::~CvCivicInfo()
 	SAFE_DELETE_ARRAY(m_paiBuildingHappinessChanges);
 	SAFE_DELETE_ARRAY(m_paiBuildingHealthChanges);
 	SAFE_DELETE_ARRAY(m_paiFeatureHappinessChanges);
+
+	this->delete2DimArray(m_ppiBuildingYieldChanges, GC.getNumBuildingClassInfos());	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingYieldModifiers, GC.getNumBuildingClassInfos());	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingCommerceChanges, GC.getNumBuildingClassInfos());	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingCommerceModifiers, GC.getNumBuildingClassInfos());	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingFreeSpecialistCounts, GC.getNumBuildingClassInfos());	// AGDM addition
+	SAFE_DELETE_ARRAY(m_paiBuildingMilitaryProductionModifiers);	// AGDM addition
+	SAFE_DELETE_ARRAY(m_paiBuildingFreeExperiences);				// AGDM addition
+
 	SAFE_DELETE_ARRAY(m_pabHurry);
 	SAFE_DELETE_ARRAY(m_pabSpecialBuildingNotRequired);
 	SAFE_DELETE_ARRAY(m_pabSpecialistValid);
@@ -5691,6 +5709,15 @@ bool CvCivicInfo::isSpecialistValid(int i) const
 	return m_pabSpecialistValid ? m_pabSpecialistValid[i] : false;
 }
 
+int CvCivicInfo::getBuildingYieldChanges(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppiBuildingYieldChanges[i][j];
+}
+
 int CvCivicInfo::getImprovementYieldChanges(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumImprovementInfos(), "Index out of bounds");
@@ -5791,6 +5818,30 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	m_paiFeatureHappinessChanges = new int[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
 
+	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingYieldChanges, GC.getNumBuildingClassInfos());
+	m_ppiBuildingYieldChanges = this->read2DimArray(stream, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingYieldModifiers, GC.getNumBuildingClassInfos());
+	m_ppiBuildingYieldModifiers = this->read2DimArray(stream, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingCommerceChanges, GC.getNumBuildingClassInfos());
+	m_ppiBuildingCommerceChanges = this->read2DimArray(stream, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingCommerceModifiers, GC.getNumBuildingClassInfos());
+	m_ppiBuildingCommerceModifiers = this->read2DimArray(stream, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	// AGDM addition
+	this->delete2DimArray(m_ppiBuildingFreeSpecialistCounts, GC.getNumBuildingClassInfos());
+	m_ppiBuildingFreeSpecialistCounts = this->read2DimArray(stream, GC.getNumBuildingClassInfos(), GC.getNumSpecialistInfos());
+	// AGDM addition
+	SAFE_DELETE_ARRAY(m_paiBuildingMilitaryProductionModifiers);
+	m_paiBuildingMilitaryProductionModifiers = new int[GC.getNumBuildingClassInfos()];
+	stream->Read(GC.getNumBuildingClassInfos(), m_paiBuildingMilitaryProductionModifiers);
+	// AGDM addition
+	SAFE_DELETE_ARRAY(m_paiBuildingFreeExperiences);
+	m_paiBuildingFreeExperiences = new int[GC.getNumBuildingClassInfos()];
+	stream->Read(GC.getNumBuildingClassInfos(), m_paiBuildingFreeExperiences);
+
 	SAFE_DELETE_ARRAY(m_pabHurry);
 	m_pabHurry = new bool[GC.getNumHurryInfos()];
 	stream->Read(GC.getNumHurryInfos(), m_pabHurry);
@@ -5820,6 +5871,31 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	}
 
 	stream->ReadString(m_szWeLoveTheKingKey);
+}
+
+void CvCivicInfo::delete2DimArray(int **arr, int size1)
+{
+	int i;
+	if (arr != NULL)
+	{
+		for(i=0;i<size1;i++)
+		{
+			SAFE_DELETE_ARRAY(arr[i]);
+		}
+		SAFE_DELETE_ARRAY(arr);
+	}
+}
+
+int **CvCivicInfo::read2DimArray(FDataStreamBase* stream, int size1, int size2)
+{
+	int i;
+	int** arr = new int*[size1];
+	for(i=0;i<size1;i++)
+	{
+		arr[i]  = new int[size2];
+		stream->Read(size2, arr[i]);
+	}
+	return arr;
 }
 
 void CvCivicInfo::write(FDataStreamBase* stream)
@@ -5886,6 +5962,22 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingHappinessChanges);
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingHealthChanges);
 	stream->Write(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
+
+	// AGDM addition
+	this->write2DimArray(stream, m_ppiBuildingYieldChanges, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	// AGDM addition
+	this->write2DimArray(stream, m_ppiBuildingYieldModifiers, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	// AGDM addition
+	this->write2DimArray(stream, m_ppiBuildingCommerceChanges, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	// AGDM addition
+	this->write2DimArray(stream, m_ppiBuildingCommerceModifiers, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	// AGDM addition
+	this->write2DimArray(stream, m_ppiBuildingFreeSpecialistCounts, GC.getNumBuildingClassInfos(), GC.getNumSpecialistInfos());
+	// AGDM addition
+	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingMilitaryProductionModifiers);
+	// AGDM addition
+	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingFreeExperiences);
+
 	stream->Write(GC.getNumHurryInfos(), m_pabHurry);
 	stream->Write(GC.getNumSpecialBuildingInfos(), m_pabSpecialBuildingNotRequired);
 	stream->Write(GC.getNumSpecialistInfos(), m_pabSpecialistValid);
@@ -5897,6 +5989,15 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	}
 
 	stream->WriteString(m_szWeLoveTheKingKey);
+}
+
+void CvCivicInfo::write2DimArray(FDataStreamBase* stream, int** arr, int size1, int size2)
+{
+	int i;
+	for(i=0;i<size1;i++)
+	{
+		stream->Write(size2, arr[i]);
+	}
 }
 
 bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
@@ -6030,6 +6131,52 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_paiBuildingHappinessChanges, "BuildingHappinessChanges", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 	pXML->SetVariableListTagPair(&m_paiBuildingHealthChanges, "BuildingHealthChanges", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 	pXML->SetVariableListTagPair(&m_paiFeatureHappinessChanges, "FeatureHappinessChanges", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+
+	pXML->Init2DIntList(&m_ppiBuildingYieldChanges, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSEYieldChanges"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "BuildingType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiBuildingYieldChanges[iIndex]);
+							// if we can, set the current xml node to its next sibling
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingYieldChanges"))
+							{
+								// call the function that sets the yield change variable
+								pXML->SetYields(&m_ppiBuildingYieldChanges[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiBuildingYieldChanges[iIndex], NUM_YIELD_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
 
 	// initialize the boolean list to the correct size and all the booleans to false
 	FAssertMsg((GC.getNumImprovementInfos() > 0) && (NUM_YIELD_TYPES) > 0,"either the number of improvement infos is zero or less or the number of yield types is zero or less");

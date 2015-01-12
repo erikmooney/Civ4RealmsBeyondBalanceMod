@@ -99,6 +99,30 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges>
+				<BuildingSEYieldChange>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingYieldChanges>
+						<iYield>2</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</BuildingYieldChanges>
+				</BuildingSEYieldChange>
+				<BuildingSEYieldChange>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingYieldChanges>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</BuildingYieldChanges>
+				</BuildingSEYieldChange>
+			</BuildingSEYieldChanges>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DESPOT</WeLoveTheKing>
@@ -164,6 +188,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
@@ -233,6 +264,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_PRIME_MINISTER</WeLoveTheKing>
@@ -298,6 +336,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DICTATOR</WeLoveTheKing>
@@ -368,6 +413,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -442,6 +494,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -507,6 +566,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -576,6 +642,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -651,6 +724,13 @@
 				</BuildingHappinessChange>
 			</BuildingHappinessChanges>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -720,6 +800,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -810,6 +897,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -880,6 +974,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -945,6 +1046,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -1040,6 +1148,13 @@
 			</SpecialistValids>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -1114,6 +1229,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1179,6 +1301,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1244,6 +1373,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1313,6 +1449,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1382,6 +1525,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -1468,6 +1618,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
@@ -1542,6 +1699,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1612,6 +1776,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1677,6 +1848,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1742,6 +1920,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1811,6 +1996,13 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
+			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>

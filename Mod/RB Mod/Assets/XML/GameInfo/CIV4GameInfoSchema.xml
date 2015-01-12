@@ -723,18 +723,54 @@
 	<ElementType name="BuildingFreeSpecialistCounts" content="eltOnly">
 		<element type="BuildingFreeSpecialistCount" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-	<ElementType name="BuildingSpecialEffect" content="eltOnly">
+	<ElementType name="BuildingSEFreeExperience" content="eltOnly">
 		<element type="BuildingType"/>
-		<element type="BuildingYieldChanges" minOccurs="0" maxOccurs="1"/>  <!-- +fixed number of food / hammers / commerce from building -->
-		<element type="BuildingCommerceChanges" minOccurs="0" maxOccurs="1"/> <!-- +fixed number of gold / beakers / culture / espionage from building -->
-		<element type="BuildingYieldModifiers" minOccurs="0" maxOccurs="1"/> <!-- +percentages for yields food, hammers (production), commerce from building -->
-		<element type="BuildingCommerceModifiers" minOccurs="0" maxOccurs="1"/> <!-- +percentages for commerce types (gold, research, culture, espionage) from building -->
-		<element type="BuildingFreeSpecialistCounts" minOccurs="0" maxOccurs="1"/> <!-- free specialists from building -->
 		<element type="iFreeExperience" minOccurs="0" maxOccurs="1"/>
+	</ElementType>
+	<ElementType name="BuildingSEFreeExperiences" content="eltOnly">
+		<element type="BuildingSEFreeExperience" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSEMilitaryProductionModifier" content="eltOnly">
+		<element type="BuildingType"/>
 		<element type="iMilitaryProductionModifier" minOccurs="0" maxOccurs="1"/>
 	</ElementType>
-	<ElementType name="BuildingSpecialEffects" content="eltOnly">
-		<element type="BuildingSpecialEffect" minOccurs="0" maxOccurs="*"/>
+	<ElementType name="BuildingSEMilitaryProductionModifiers" content="eltOnly">
+		<element type="BuildingSEMilitaryProductionModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSEFreeSpecialistCount" content="eltOnly">
+		<element type="BuildingType"/>
+		<element type="BuildingFreeSpecialistCounts" minOccurs="0" maxOccurs="1"/> <!-- free specialists from building -->
+	</ElementType>
+	<ElementType name="BuildingSEFreeSpecialistCounts" content="eltOnly">
+		<element type="BuildingSEFreeSpecialistCount" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSECommerceModifier" content="eltOnly">
+		<element type="BuildingType"/>
+		<element type="BuildingCommerceModifiers" minOccurs="0" maxOccurs="1"/> <!-- +percentages for commerce types (gold, research, culture, espionage) from building -->
+	</ElementType>
+	<ElementType name="BuildingSECommerceModifiers" content="eltOnly">
+		<element type="BuildingSECommerceModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSECommerceChange" content="eltOnly">
+		<element type="BuildingType"/>
+		<element type="BuildingCommerceChanges" minOccurs="0" maxOccurs="1"/> <!-- +fixed number of gold / beakers / culture / espionage from building -->
+	</ElementType>
+	<ElementType name="BuildingSECommerceChanges" content="eltOnly">
+		<element type="BuildingSECommerceChange" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSEYieldModifier" content="eltOnly">
+		<element type="BuildingType"/>
+		<element type="BuildingYieldModifiers" minOccurs="0" maxOccurs="1"/> <!-- +percentages for yields food, hammers (production), commerce from building -->
+	</ElementType>
+	<ElementType name="BuildingSEYieldModifiers" content="eltOnly">
+		<element type="BuildingSEYieldModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="BuildingSEYieldChange" content="eltOnly">
+		<element type="BuildingType"/>
+		<element type="BuildingYieldChanges" minOccurs="0" maxOccurs="1"/>  <!-- +fixed number of food / hammers / commerce from building -->
+	</ElementType>
+	<ElementType name="BuildingSEYieldChanges" content="eltOnly">
+		<element type="BuildingSEYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="BuildingHappinessChange" content="eltOnly">
 		<element type="BuildingType"/>
@@ -833,7 +869,13 @@
 		<element type="SpecialistValids"/>
 		<element type="BuildingHappinessChanges"/>
 		<element type="BuildingHealthChanges"/>
-		<element type="BuildingSpecialEffects" minOccurs="0" maxOccurs="1" />
+		<element type="BuildingSEYieldChanges"/>
+		<element type="BuildingSEYieldModifiers"/>
+		<element type="BuildingSECommerceChanges"/>
+		<element type="BuildingSECommerceModifiers"/>
+		<element type="BuildingSEFreeSpecialistCounts"/>
+		<element type="BuildingSEMilitaryProductionModifiers"/>
+		<element type="BuildingSEFreeExperiences"/>
 		<element type="FeatureHappinessChanges"/>
 		<element type="ImprovementYieldChanges"/>
 		<element type="WeLoveTheKing"/>

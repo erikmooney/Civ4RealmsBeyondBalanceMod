@@ -1372,8 +1372,13 @@ public:
 
 	int getImprovementYieldChanges(int i, int j) const;				// Exposed to Python
 
+	int getBuildingYieldChanges(int i, int j) const; // AGDM addition
+
+	void delete2DimArray(int **arr, int size1);
+	int **read2DimArray(FDataStreamBase* stream, int size1, int size2);
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
+	void write2DimArray(FDataStreamBase* stream, int** arr, int size1, int size2);
 
 	bool read(CvXMLLoadUtility* pXML);
 
@@ -1439,6 +1444,14 @@ protected:
 	int* m_paiBuildingHappinessChanges;
 	int* m_paiBuildingHealthChanges;
 	int* m_paiFeatureHappinessChanges;
+
+	int** m_ppiBuildingYieldChanges;					// AGDM addition, xml tag <BuildingSEYieldChanges/>
+	int** m_ppiBuildingYieldModifiers;				// AGDM addition, xml tag <BuildingSEYieldModifiers/>
+	int** m_ppiBuildingCommerceChanges;				// AGDM addition, xml tag <BuildingSECommerceChanges/>
+	int** m_ppiBuildingCommerceModifiers;			// AGDM addition, xml tag <BuildingSECommerceModifiers/>
+	int** m_ppiBuildingFreeSpecialistCounts;			// AGDM addition, xml tag <BuildingSEFreeSpecialistCounts/>
+	int* m_paiBuildingMilitaryProductionModifiers;	// AGDM addition, xml tag <BuildingSEMilitaryProductionModifiers/>
+	int* m_paiBuildingFreeExperiences;				// AGDM addition, xml tag <BuildingSEFreeExperiences/>
 
 	bool* m_pabHurry;
 	bool* m_pabSpecialBuildingNotRequired;

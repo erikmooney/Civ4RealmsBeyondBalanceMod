@@ -433,4 +433,12 @@
 		<Italian>Il [COLOR_BUILDING_TEXT]dun[COLOR_REVERT], l'equivalente celtico delle [COLOR_BUILDING_TEXT]mura[COLOR_REVERT], potenzia le difese della citt&#224; contro le unit&#224; precedenti alla polvere da sparo e garantisce a tutte le unit&#224; adatte costruite in citt&#224; la promozione [COLOR_HIGHLIGHT_TEXT]Guerriglia II[COLOR_REVERT].</Italian>
 		<Spanish>Los [COLOR_BUILDING_TEXT]Duns[COLOR_REVERT], los equivalentes celtas de las [COLOR_BUILDING_TEXT]Murallas[COLOR_REVERT], aumentan las defensas de una ciudad contra unidades anteriores a las armas de p&#243;lvora y otorgan a todas las unidades pertinentes que se construyan en esa ciudad el ascenso a [COLOR_HIGHLIGHT_TEXT]Guerra de guerrillas II[COLOR_REVERT].</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BUILDING_YIELD_CHANGE</Tag>
+		<English>[ICON_BULLET]%D1_Change%F2_Icon from[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Change%F2_Icon :[SPACE]</French>
+		<German>[ICON_BULLET]%D1_Change%F2_Icon das Geb&#228;ude[SPACE]</German>
+		<Italian>[ICON_BULLET]%D1_Change%F2_Icon da[SPACE]</Italian>
+		<Spanish>[ICON_BULLET]%D1_Change %F2_Icon por[SPACE]</Spanish>
+	</TEXT>
 </Civ4GameText>

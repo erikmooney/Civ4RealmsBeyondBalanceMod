@@ -1373,6 +1373,12 @@ public:
 	int getImprovementYieldChanges(int i, int j) const;				// Exposed to Python
 
 	int getBuildingYieldChanges(int i, int j) const; // AGDM addition
+	int getBuildingYieldModifiers(int i, int j) const; // AGDM addition
+	int getBuildingCommerceChanges(int i, int j) const; // AGDM addition
+	int getBuildingCommerceModifiers(int i, int j) const; // AGDM addition
+	int getBuildingFreeSpecialistCounts(int i, int j) const; // AGDM addition
+	int getBuildingFreeExperiences(int i) const; // AGDM addition
+	int getBuildingMilitaryProductionModifiers(int i) const; // AGDM addition
 
 	void delete2DimArray(int **arr, int size1);
 	int **read2DimArray(FDataStreamBase* stream, int size1, int size2);

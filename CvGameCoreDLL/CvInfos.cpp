@@ -5709,6 +5709,7 @@ bool CvCivicInfo::isSpecialistValid(int i) const
 	return m_pabSpecialistValid ? m_pabSpecialistValid[i] : false;
 }
 
+// AGDM addition:
 int CvCivicInfo::getBuildingYieldChanges(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
@@ -5716,6 +5717,62 @@ int CvCivicInfo::getBuildingYieldChanges(int i, int j) const
 	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
 	return m_ppiBuildingYieldChanges[i][j];
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingYieldModifiers(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppiBuildingYieldModifiers[i][j];
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingCommerceChanges(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppiBuildingCommerceChanges[i][j];
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingCommerceModifiers(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppiBuildingCommerceModifiers[i][j];
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingFreeSpecialistCounts(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < GC.getNumSpecialistTypeInfos(), "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppiBuildingFreeSpecialistCounts[i][j];
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingFreeExperiences(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_paiBuildingFreeExperiences ? m_paiBuildingFreeExperiences[i] : 0; //-1;
+}
+
+// AGDM addition:
+int CvCivicInfo::getBuildingMilitaryProductionModifiers(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_paiBuildingMilitaryProductionModifiers ? m_paiBuildingMilitaryProductionModifiers[i] : 0; //-1;
 }
 
 int CvCivicInfo::getImprovementYieldChanges(int i, int j) const
@@ -6132,6 +6189,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_paiBuildingHealthChanges, "BuildingHealthChanges", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 	pXML->SetVariableListTagPair(&m_paiFeatureHappinessChanges, "FeatureHappinessChanges", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 
+	// AGDM addition:
 	pXML->Init2DIntList(&m_ppiBuildingYieldChanges, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSEYieldChanges"))
 	{
@@ -6154,7 +6212,6 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 							// if we can, set the current xml node to its next sibling
 							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingYieldChanges"))
 							{
-								// call the function that sets the yield change variable
 								pXML->SetYields(&m_ppiBuildingYieldChanges[iIndex]);
 								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 							}
@@ -6177,6 +6234,185 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+
+	// AGDM addition:
+	pXML->Init2DIntList(&m_ppiBuildingYieldModifiers, GC.getNumBuildingClassInfos(), NUM_YIELD_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSEYieldModifiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "BuildingType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiBuildingYieldModifiers[iIndex]);
+							// if we can, set the current xml node to its next sibling
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingYieldModifiers"))
+							{
+								pXML->SetYields(&m_ppiBuildingYieldModifiers[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiBuildingYieldModifiers[iIndex], NUM_YIELD_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// AGDM addition:
+	pXML->Init2DIntList(&m_ppiBuildingCommerceChanges, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSECommerceChanges"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "BuildingType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiBuildingCommerceChanges[iIndex]);
+							// if we can, set the current xml node to its next sibling
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingCommerceChanges"))
+							{
+								pXML->SetCommerce(&m_ppiBuildingCommerceChanges[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiBuildingCommerceChanges[iIndex], NUM_COMMERCE_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// AGDM addition:
+	pXML->Init2DIntList(&m_ppiBuildingCommerceModifiers, GC.getNumBuildingClassInfos(), NUM_COMMERCE_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSECommerceModifiers"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "BuildingType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiBuildingCommerceModifiers[iIndex]);
+							// if we can, set the current xml node to its next sibling
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingCommerceModifiers"))
+							{
+								pXML->SetCommerce(&m_ppiBuildingCommerceModifiers[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiBuildingCommerceModifiers[iIndex], NUM_COMMERCE_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// AGDM addition:
+	pXML->Init2DIntList(&m_ppiBuildingFreeSpecialistCounts, GC.getNumBuildingClassInfos(), GC.getNumSpecialistInfos());
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"BuildingSEFreeSpecialistCounts"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "BuildingType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiBuildingFreeSpecialistCounts[iIndex]);
+							pXML->SetVariableListTagPair(&m_ppiBuildingFreeSpecialistCounts[iIndex], "BuildingFreeSpecialistCounts", sizeof(GC.getSpecialistInfo((SpecialistTypes)0)), GC.getNumSpecialistInfos());
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	// AGDM addition:
+	pXML->SetVariableListTagPair(&m_paiBuildingFreeExperiences, "BuildingSEFreeExperiences", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
+	// AGDM addition:
+	pXML->SetVariableListTagPair(&m_paiBuildingMilitaryProductionModifiers, "BuildingSEMilitaryProductionModifiers", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 
 	// initialize the boolean list to the correct size and all the booleans to false
 	FAssertMsg((GC.getNumImprovementInfos() > 0) && (NUM_YIELD_TYPES) > 0,"either the number of improvement infos is zero or less or the number of yield types is zero or less");

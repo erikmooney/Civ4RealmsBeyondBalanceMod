@@ -5754,7 +5754,7 @@ int CvCivicInfo::getBuildingFreeSpecialistCounts(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
-	FAssertMsg(j < GC.getNumSpecialistTypeInfos(), "Index out of bounds");
+	FAssertMsg(j < GC.getNumSpecialistInfos(), "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
 	return m_ppiBuildingFreeSpecialistCounts[i][j];
 }

@@ -117,7 +117,24 @@
 					</BuildingYieldChanges>
 				</BuildingSEYieldChange>
 			</BuildingSEYieldChanges>
-			<BuildingSEYieldModifiers/>
+			<BuildingSEYieldModifiers>
+				<BuildingSEYieldModifier>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingYieldModifiers>
+						<iYield>0</iYield>
+						<iYield>10</iYield>
+						<iYield>10</iYield>
+					</BuildingYieldModifiers>
+				</BuildingSEYieldModifier>
+				<BuildingSEYieldModifier>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingYieldModifiers>
+						<iYield>0</iYield>
+						<iYield>50</iYield>
+						<iYield>-50</iYield>
+					</BuildingYieldModifiers>
+				</BuildingSEYieldModifier>
+			</BuildingSEYieldModifiers>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
 			<BuildingSEFreeSpecialistCounts/>
@@ -496,8 +513,46 @@
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
-			<BuildingSECommerceChanges/>
-			<BuildingSECommerceModifiers/>
+			<BuildingSECommerceChanges>
+				<BuildingSECommerceChange>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingCommerceChanges>
+						<iCommerce>2</iCommerce>
+						<iCommerce>1</iCommerce>
+						<iCommerce>0</iCommerce>
+						<iCommerce>0</iCommerce>
+					</BuildingCommerceChanges>
+				</BuildingSECommerceChange>
+				<BuildingSECommerceChange>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingCommerceChanges>
+						<iCommerce>0</iCommerce>
+						<iCommerce>1</iCommerce>
+						<iCommerce>0</iCommerce>
+						<iCommerce>4</iCommerce>
+					</BuildingCommerceChanges>
+				</BuildingSECommerceChange>
+			</BuildingSECommerceChanges>
+			<BuildingSECommerceModifiers>
+				<BuildingSECommerceModifier>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingCommerceModifiers>
+						<iCommerce>0</iCommerce>
+						<iCommerce>10</iCommerce>
+						<iCommerce>10</iCommerce>
+						<iCommerce>10</iCommerce>
+					</BuildingCommerceModifiers>
+				</BuildingSECommerceModifier>
+				<BuildingSECommerceModifier>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingCommerceModifiers>
+						<iCommerce>25</iCommerce>
+						<iCommerce>50</iCommerce>
+						<iCommerce>-50</iCommerce>
+						<iCommerce>50</iCommerce>
+					</BuildingCommerceModifiers>
+				</BuildingSECommerceModifier>
+			</BuildingSECommerceModifiers>
 			<BuildingSEFreeSpecialistCounts/>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
@@ -901,7 +956,34 @@
 			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
-			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEFreeSpecialistCounts>
+				<BuildingSEFreeSpecialistCount>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingFreeSpecialistCounts>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+							<iFreeSpecialistCount>1</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+							<iFreeSpecialistCount>1</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+					</BuildingFreeSpecialistCounts>
+				</BuildingSEFreeSpecialistCount>
+				<BuildingSEFreeSpecialistCount>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingFreeSpecialistCounts>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+							<iFreeSpecialistCount>1</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_SPY</SpecialistType>
+							<iFreeSpecialistCount>2</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+					</BuildingFreeSpecialistCounts>
+				</BuildingSEFreeSpecialistCount>
+			</BuildingSEFreeSpecialistCounts>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
@@ -1306,8 +1388,34 @@
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
 			<BuildingSEFreeSpecialistCounts/>
-			<BuildingSEMilitaryProductionModifiers/>
-			<BuildingSEFreeExperiences/>
+			<BuildingSEMilitaryProductionModifiers>
+				<BuildingSEMilitaryProductionModifier>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<iMilitaryProductionModifier>20</iMilitaryProductionModifier>
+				</BuildingSEMilitaryProductionModifier>
+				<BuildingSEMilitaryProductionModifier>
+					<BuildingType>BUILDINGCLASS_COLOSSEUM</BuildingType>
+					<iMilitaryProductionModifier>20</iMilitaryProductionModifier>
+				</BuildingSEMilitaryProductionModifier>
+				<BuildingSEMilitaryProductionModifier>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<iMilitaryProductionModifier>50</iMilitaryProductionModifier>
+				</BuildingSEMilitaryProductionModifier>
+			</BuildingSEMilitaryProductionModifiers>
+			<BuildingSEFreeExperiences>
+				<BuildingSEFreeExperience>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<iFreeExperience>2</iFreeExperience>
+				</BuildingSEFreeExperience>
+				<BuildingSEFreeExperience>
+					<BuildingType>BUILDINGCLASS_COLOSSEUM</BuildingType>
+					<iFreeExperience>2</iFreeExperience>
+				</BuildingSEFreeExperience>
+				<BuildingSEFreeExperience>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<iFreeExperience>3</iFreeExperience>
+				</BuildingSEFreeExperience>
+			</BuildingSEFreeExperiences>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>

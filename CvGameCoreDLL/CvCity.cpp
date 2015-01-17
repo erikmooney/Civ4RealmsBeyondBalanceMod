@@ -308,6 +308,23 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	{
 		GC.getGameINLINE().updatePlotGroups();
 	}
+
+	// AGDM addition, apply civic effects:
+	for (iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
+	{
+		for (int iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
+		{
+			for (int iK = 0; iK < GC.getNumCivicOptionInfos(); iK++)
+			{
+				CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iK);
+				if (GC.getCivicInfo(eCivic).getBuildingYieldChanges(iI, iJ) != 0)
+				{
+					changeBuildingYieldChange((BuildingClassTypes)iI, (YieldTypes)iJ, (GC.getCivicInfo(eCivic)).getBuildingYieldChanges(iI, iJ));
+				}
+			}
+		}
+	}
+
 	pPlot->updateYield(); // AGDM addition
 
 	AI_init();

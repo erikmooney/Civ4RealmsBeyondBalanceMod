@@ -99,24 +99,7 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
-			<BuildingSEYieldChanges>
-				<BuildingSEYieldChange>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<BuildingYieldChanges>
-						<iYield>2</iYield>
-						<iYield>1</iYield>
-						<iYield>0</iYield>
-					</BuildingYieldChanges>
-				</BuildingSEYieldChange>
-				<BuildingSEYieldChange>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingYieldChanges>
-						<iYield>0</iYield>
-						<iYield>1</iYield>
-						<iYield>0</iYield>
-					</BuildingYieldChanges>
-				</BuildingSEYieldChange>
-			</BuildingSEYieldChanges>
+			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers>
 				<BuildingSEYieldModifier>
 					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
@@ -1056,7 +1039,24 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
-			<BuildingSEYieldChanges/>
+			<BuildingSEYieldChanges>
+				<BuildingSEYieldChange>
+					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingYieldChanges>
+						<iYield>2</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</BuildingYieldChanges>
+				</BuildingSEYieldChange>
+				<BuildingSEYieldChange>
+					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
+					<BuildingYieldChanges>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</BuildingYieldChanges>
+				</BuildingSEYieldChange>
+			</BuildingSEYieldChanges>
 			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>

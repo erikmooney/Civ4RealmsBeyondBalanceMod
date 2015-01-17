@@ -15580,6 +15580,16 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 		{
 			changeExtraBuildingHappiness(eOurBuilding, (GC.getCivicInfo(eCivic).getBuildingHappinessChanges(iI) * iChange));
 			changeExtraBuildingHealth(eOurBuilding, (GC.getCivicInfo(eCivic).getBuildingHealthChanges(iI) * iChange));
+			// AGDM addition:
+			// TODO: Process this when a city is aquired as well. (I.e. a city changes ownership; thus the civics of the city changes
+			int iLoop;
+			for (iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
+			{
+				for (CvCity* pLoopCity = firstCity(&iLoop); NULL != pLoopCity; pLoopCity = nextCity(&iLoop))
+				{
+					pLoopCity->changeBuildingYieldChange((BuildingClassTypes)iI, (YieldTypes)iJ, (GC.getCivicInfo(eCivic)).getBuildingYieldChanges(iI, iJ) * iChange);
+				}					
+			}
 		}
 	}
 

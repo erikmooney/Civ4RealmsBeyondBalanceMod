@@ -1898,5 +1898,8 @@
 		<DefineName>ENABLE_PITBOSS_PAUSE_FIX</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
-	
+	<Define>
+		<DefineName>TECH_COST_SCALING_ALGORITHM</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 </Civ4Defines>

@@ -323,6 +323,17 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 				}
 			}
 		}
+		for (iJ = 0; iJ < NUM_COMMERCE_TYPES; ++iJ)
+		{
+			for (int iK = 0; iK < GC.getNumCivicOptionInfos(); iK++)
+			{
+				CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iK);
+				if (GC.getCivicInfo(eCivic).getBuildingCommerceChanges(iI, iJ) != 0)
+				{
+					changeBuildingCommerceChange((BuildingClassTypes)iI, (CommerceTypes)iJ, (GC.getCivicInfo(eCivic)).getBuildingCommerceChanges(iI, iJ));
+				}
+			}
+		}
 	}
 
 	pPlot->updateYield(); // AGDM addition
@@ -3713,12 +3724,31 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 			changeBaseYieldRate(((YieldTypes)iI), ((GC.getBuildingInfo(eBuilding).getYieldChange(iI) + getBuildingYieldChange((BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType(), (YieldTypes)iI))* iChange));
 			changeYieldRateModifier(((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getYieldModifier(iI) * iChange));
 			changePowerYieldRateModifier(((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getPowerYieldModifier(iI) * iChange));
+			// AGDM addition: Add building yield modifiers and commerce modifiers from civics
+			for(iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
+			{
+				CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iJ);
+				changeYieldRateModifier((YieldTypes)iI, GC.getCivicInfo(eCivic).getBuildingYieldModifiers(GC.getBuildingInfo(eBuilding).getBuildingClassType(), iI) * iChange);
+			}
 		}
 
 		for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 		{
 			changeCommerceRateModifier(((CommerceTypes)iI), (GC.getBuildingInfo(eBuilding).getCommerceModifier(iI) * iChange));
 			changeCommerceHappinessPer(((CommerceTypes)iI), (GC.getBuildingInfo(eBuilding).getCommerceHappiness(iI) * iChange));
+			// AGDM addition: Add building yield modifiers and commerce modifiers from civics
+			for(iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
+			{
+				CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iJ);
+				changeCommerceRateModifier((CommerceTypes)iI, GC.getCivicInfo(eCivic).getBuildingCommerceModifiers(GC.getBuildingInfo(eBuilding).getBuildingClassType(), iI) * iChange);
+			}
+		}
+		// AGDM addition: Get military production and free experience from civics
+		for(iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		{
+			CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iI);
+			changeMilitaryProductionModifier(GC.getCivicInfo(eCivic).getBuildingMilitaryProductionModifiers(GC.getBuildingInfo(eBuilding).getBuildingClassType()) * iChange);
+			changeFreeExperience(GC.getCivicInfo(eCivic).getBuildingFreeExperiences(GC.getBuildingInfo(eBuilding).getBuildingClassType()) * iChange);
 		}
 
 		for (iI = 0; iI < GC.getNumReligionInfos(); iI++)
@@ -3730,6 +3760,13 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		{
 			changeMaxSpecialistCount(((SpecialistTypes)iI), GC.getBuildingInfo(eBuilding).getSpecialistCount(iI) * iChange);
 			changeFreeSpecialistCount(((SpecialistTypes)iI), GC.getBuildingInfo(eBuilding).getFreeSpecialistCount(iI) * iChange);
+			// AGDM addition: Add free specialists from civics
+			for(iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
+			{
+				CivicTypes eCivic = GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)iJ);
+				int iS = GC.getCivicInfo(eCivic).getBuildingFreeSpecialistCounts(GC.getBuildingInfo(eBuilding).getBuildingClassType(), iI);
+				changeFreeSpecialistCount((SpecialistTypes)iI, iS * iChange);
+			}
 		}
 
 		for (iI = 0; iI < GC.getNumImprovementInfos(); ++iI)

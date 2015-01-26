@@ -489,4 +489,44 @@
 		<Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] da[SPACE]</Italian>
 		<Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] por[SPACE]</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_XP</Tag>
+		<English>[ICON_BULLET]%D1_Change Experience Points with[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Change EXP avec[SPACE]</French>
+		<German>[ICON_BULLET]%D1_Change Erfahrungspunkte mit[SPACE]</German>
+		<Italian>[ICON_BULLET]%D1_Change punti esperienza con[SPACE]</Italian>
+		<Spanish>[ICON_BULLET]%D1_Change [NUM1:punto de experiencia:puntos de experiencia] con[SPACE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_XP_LONG</Tag>
+		<English>[ICON_BULLET]New Units Receive %D1_Change Experience Points with[SPACE]</English>
+		<French>[ICON_BULLET]Les nouvelles unit&#233;s b&#233;n&#233;ficient de %D1_Change EXP avec[SPACE]</French>
+		<German>[ICON_BULLET]Neue Einheiten erhalten %D1_Change Erfahrungspunkte mit[SPACE]</German>
+		<Italian>[ICON_BULLET]Le nuove unit&#224; ricevono %D1_Change punti esperienza con[SPACE]</Italian>
+		<Spanish>[ICON_BULLET]Las nuevas unidades reciben %D1_Change [NUM1:punto de experiencia:puntos de experiencia] con[SPACE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_SPECIALIST</Tag>
+		<English>[ICON_BULLET]%D1_Change Free [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] with[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Change Donne un [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratuit avec[SPACE]</French>
+		<German>[ICON_BULLET]%D1_Change freien Spezialisten [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] mit[SPACE]</German>
+		<Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis con[SPACE]</Italian>
+		<Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis con[SPACE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CIVIC_WITH</Tag>
+		<English>[SPACE]with[SPACE]</English>
+		<French>[SPACE]avec[SPACE]</French>
+		<German>[SPACE]mit[SPACE]</German>
+		<Italian>[SPACE]con[SPACE]</Italian>
+		<Spanish>[SPACE]con[SPACE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CIVIC_MILITARY_PRODUCTION</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Military Unit Production with[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Mod%% de production d'unit&#233;s militaires avec[SPACE]</French>
+		<German>[ICON_BULLET]%D1_Mod%% Produktion von Milit&#228;reinheiten mit[SPACE]</German>
+		<Italian>[ICON_BULLET]%D1_Mod%% di produzione nelle unit&#224; militari con[SPACE]</Italian>
+		<Spanish>[ICON_BULLET]%D1_Mod%% a la producci&#243;n de unidades militares con[SPACE]</Spanish>
+	</TEXT>
 </Civ4GameText>

@@ -7331,6 +7331,80 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 		}
 	}
 
+	// AGDM addition:
+	iLast = 0;
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		int iChange = GC.getCivicInfo((CivicTypes)iI).getBuildingFreeExperiences(kBuilding.getBuildingClassType());
+		if (0 != iChange)
+		{
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_CIVIC_FREE_XP", iChange).c_str());
+			szTempBuffer.Format(L"<link=literal>%s</link>", GC.getCivicInfo((CivicTypes)iI).getDescription());
+			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (iChange != iLast));
+			iLast = iChange;
+		}
+	}
+
+	// AGDM addition:
+	iLast = 0;
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		int iChange = GC.getCivicInfo((CivicTypes)iI).getBuildingMilitaryProductionModifiers(kBuilding.getBuildingClassType());
+		if (0 != iChange)
+		{
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_CIVIC_MILITARY_PRODUCTION", iChange).c_str());
+			szTempBuffer.Format(L"<link=literal>%s</link>", GC.getCivicInfo((CivicTypes)iI).getDescription());
+			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (iChange != iLast));
+			iLast = iChange;
+		}
+	}
+
+	// AGDM addition:
+	for (int iJ = 0; iJ < GC.getNumSpecialistInfos(); ++iJ)
+	{
+		iLast = 0;
+		for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+		{
+			int iChange = GC.getCivicInfo((CivicTypes)iI).getBuildingFreeSpecialistCounts(kBuilding.getBuildingClassType(), iJ);
+			if (0 != iChange)
+			{
+				szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_CIVIC_FREE_SPECIALIST", iChange, GC.getSpecialistInfo((SpecialistTypes)iJ).getTextKeyWide()).c_str() );
+				szTempBuffer.Format(L"<link=literal>%s</link>", GC.getCivicInfo((CivicTypes)iI).getDescription());
+				setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (iChange != iLast));
+				iLast = iChange;
+			}
+		}
+	}
+
+	// AGDM addition:
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		szTempBuffer.Format(L"%s<link>%s</link>", gDLL->getText("TXT_KEY_BUILDING_CIVIC_WITH").c_str(), GC.getCivicInfo((CivicTypes)iI).getDescription());
+		int* aiModifiers = GC.getCivicInfo((CivicTypes)iI).getBuildingCommerceModifierArray(kBuilding.getBuildingClassType());
+		setCommerceChangeHelp(szBuffer, L"", L"", szTempBuffer, aiModifiers, true, true);
+	}
+	// AGDM addition:
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		szTempBuffer.Format(L"%s<link>%s</link>", gDLL->getText("TXT_KEY_BUILDING_CIVIC_WITH").c_str(), GC.getCivicInfo((CivicTypes)iI).getDescription());
+		int* aiModifiers = GC.getCivicInfo((CivicTypes)iI).getBuildingCommerceChangeArray(kBuilding.getBuildingClassType());
+		setCommerceChangeHelp(szBuffer, L"", L"", szTempBuffer, aiModifiers, false, true);
+	}
+	// AGDM addition:
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		szTempBuffer.Format(L"%s<link>%s</link>", gDLL->getText("TXT_KEY_BUILDING_CIVIC_WITH").c_str(), GC.getCivicInfo((CivicTypes)iI).getDescription());
+		int* aiModifiers = GC.getCivicInfo((CivicTypes)iI).getBuildingYieldModifierArray(kBuilding.getBuildingClassType());
+		setYieldChangeHelp(szBuffer, L"", L"", szTempBuffer, aiModifiers, true, true);
+	}
+	// AGDM addition:
+	for (iI = 0; iI < GC.getNumCivicInfos(); ++iI)
+	{
+		szTempBuffer.Format(L"%s<link>%s</link>", gDLL->getText("TXT_KEY_BUILDING_CIVIC_WITH").c_str(), GC.getCivicInfo((CivicTypes)iI).getDescription());
+		int* aiModifiers = GC.getCivicInfo((CivicTypes)iI).getBuildingYieldChangeArray(kBuilding.getBuildingClassType());
+		setYieldChangeHelp(szBuffer, L"", L"", szTempBuffer, aiModifiers, false, true);
+	}
+
 	iLast = 0;
 
 	for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)

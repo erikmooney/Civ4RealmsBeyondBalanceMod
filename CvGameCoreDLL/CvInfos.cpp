@@ -5720,6 +5720,14 @@ int CvCivicInfo::getBuildingYieldChanges(int i, int j) const
 }
 
 // AGDM addition:
+int *CvCivicInfo::getBuildingYieldChangeArray(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppiBuildingYieldChanges[i];
+}
+
+// AGDM addition:
 int CvCivicInfo::getBuildingYieldModifiers(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
@@ -5727,6 +5735,14 @@ int CvCivicInfo::getBuildingYieldModifiers(int i, int j) const
 	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
 	return m_ppiBuildingYieldModifiers[i][j];
+}
+
+// AGDM addition:
+int* CvCivicInfo::getBuildingYieldModifierArray(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppiBuildingYieldModifiers[i];
 }
 
 // AGDM addition:
@@ -5740,6 +5756,14 @@ int CvCivicInfo::getBuildingCommerceChanges(int i, int j) const
 }
 
 // AGDM addition:
+int *CvCivicInfo::getBuildingCommerceChangeArray(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppiBuildingCommerceChanges[i];
+}
+
+// AGDM addition:
 int CvCivicInfo::getBuildingCommerceModifiers(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
@@ -5747,6 +5771,14 @@ int CvCivicInfo::getBuildingCommerceModifiers(int i, int j) const
 	FAssertMsg(j < NUM_COMMERCE_TYPES, "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
 	return m_ppiBuildingCommerceModifiers[i][j];
+}
+
+// AGDM addition:
+int *CvCivicInfo::getBuildingCommerceModifierArray(int i) const
+{
+	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppiBuildingCommerceModifiers[i];
 }
 
 // AGDM addition:

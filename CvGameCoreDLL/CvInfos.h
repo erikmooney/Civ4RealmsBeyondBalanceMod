@@ -1373,9 +1373,13 @@ public:
 	int getImprovementYieldChanges(int i, int j) const;				// Exposed to Python
 
 	int getBuildingYieldChanges(int i, int j) const; // AGDM addition
+	int *getBuildingYieldChangeArray(int i) const; // AGDM addition
 	int getBuildingYieldModifiers(int i, int j) const; // AGDM addition
+	int *getBuildingYieldModifierArray(int i) const; // AGDM addition
 	int getBuildingCommerceChanges(int i, int j) const; // AGDM addition
+	int *getBuildingCommerceChangeArray(int i) const; // AGDM addition
 	int getBuildingCommerceModifiers(int i, int j) const; // AGDM addition
+	int *getBuildingCommerceModifierArray(int i) const; // AGDM addition
 	int getBuildingFreeSpecialistCounts(int i, int j) const; // AGDM addition
 	int getBuildingFreeExperiences(int i) const; // AGDM addition
 	int getBuildingMilitaryProductionModifiers(int i) const; // AGDM addition

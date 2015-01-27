@@ -529,4 +529,12 @@
 		<Italian>%s1_MaintNum [ICON_GOLD]: caratteristiche dei leader</Italian>
 		<Spanish>%s1_MaintNum [ICON_GOLD]: rasgos de los l&#237;deres</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_CITY_UPKEEP_MODIFIER</Tag>
+		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% City Maintenance</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Entretien ville</French>
+		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Stadtunterhalt</German>
+		<Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Mantenimento citt&#224;</Italian>
+		<Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Mantenimiento de las ciudades</Spanish>
+	</TEXT>
 </Civ4GameText>

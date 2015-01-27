@@ -11840,6 +11840,10 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 			for (int iLoop = 0; iLoop < city.getNumBuilding((BuildingTypes)i); iLoop++)
 			{
 				iBuildingMod += infoBuilding.getCommerceModifier(eCommerceType);
+				// AGDM addition: Add bonus from civics
+				for (int iCivicLoop = 0; iCivicLoop < GC.getNumCivicOptionInfos(); iCivicLoop++) {
+					iBuildingMod += GC.getCivicInfo(owner.getCivics((CivicOptionTypes)iCivicLoop)).getBuildingCommerceModifiers(infoBuilding.getBuildingClassType(), eCommerceType);
+				}
 			}
 		}
 		for (int j = 0; j < MAX_PLAYERS; j++)
@@ -11991,6 +11995,10 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 			for (int iLoop = 0; iLoop < city.getNumBuilding((BuildingTypes)i); iLoop++)
 			{
 				iBuildingMod += infoBuilding.getYieldModifier(eYieldType);
+				// AGDM addition: Add bonus from civics
+				for (int iCivicLoop = 0; iCivicLoop < GC.getNumCivicOptionInfos(); iCivicLoop++) {
+					iBuildingMod += GC.getCivicInfo(owner.getCivics((CivicOptionTypes)iCivicLoop)).getBuildingYieldModifiers(infoBuilding.getBuildingClassType(), eYieldType);
+				}
 			}
 		}
 		for (int j = 0; j < MAX_PLAYERS; j++)

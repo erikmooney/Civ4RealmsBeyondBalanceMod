@@ -521,4 +521,12 @@
 		<Italian>[ICON_BULLET]%D1_Mod%% di produzione nelle unit&#224; militari con[SPACE]</Italian>
 		<Spanish>[ICON_BULLET]%D1_Mod%% a la producci&#243;n de unidades militares con[SPACE]</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_TRAITS_MAINT</Tag>
+		<English>%s1_MaintNum [ICON_GOLD]: Leader traits</English>
+		<French>%s1_MaintNum [ICON_GOLD] : traits de caract&#232;re</French>
+		<German>%s1_MaintNum [ICON_GOLD]: Eigenschaften Staatsoberh&#228;upterns</German>
+		<Italian>%s1_MaintNum [ICON_GOLD]: caratteristiche dei leader</Italian>
+		<Spanish>%s1_MaintNum [ICON_GOLD]: rasgos de los l&#237;deres</Spanish>
+	</TEXT>
 </Civ4GameText>

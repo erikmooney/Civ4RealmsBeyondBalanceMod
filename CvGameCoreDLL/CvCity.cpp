@@ -1151,6 +1151,23 @@ void CvCity::updateVisibility()
 void CvCity::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience)
 {
 	GET_PLAYER(getOwnerINLINE()).createGreatPeople(eGreatPersonUnit, bIncrementThreshold, bIncrementExperience, getX_INLINE(), getY_INLINE());
+	// AGDM addition: Add settled great people for PHI.
+	int iI, iJ;
+	int iExtraSettledGreatPeople = GC.getDefineINT("EXTRA_SETTLED_GREAT_PEOPLE_FROM_PHI");
+	if(iExtraSettledGreatPeople > 0 && bIncrementThreshold) {
+		for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+		{
+			if(GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)iJ) && GC.getTraitInfo((TraitTypes)iJ).getGreatPeopleRateModifier() > 0) {
+				for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
+				{
+					if (GC.getUnitInfo(eGreatPersonUnit).getGreatPeoples(iI))
+					{
+						changeFreeSpecialistCount((SpecialistTypes)iI, iExtraSettledGreatPeople);
+					}
+				}
+			}
+		}
+	}
 }
 
 

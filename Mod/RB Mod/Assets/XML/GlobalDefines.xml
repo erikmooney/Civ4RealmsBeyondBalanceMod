@@ -1902,4 +1902,8 @@
 		<DefineName>TECH_COST_SCALING_ALGORITHM</DefineName>
 		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>EXTRA_SETTLED_GREAT_PEOPLE_FROM_PHI</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 </Civ4Defines>

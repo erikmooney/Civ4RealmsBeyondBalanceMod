@@ -2228,7 +2228,8 @@ bool CvPlayer::hasTrait(TraitTypes eTrait) const
 {
 	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
 	FAssertMsg((eTrait >= 0), "eTrait is less than zero");
-	return GC.getLeaderHeadInfo(getLeaderType()).hasTrait(eTrait);
+	return GC.getLeaderHeadInfo(getLeaderType()).hasTrait(eTrait)
+		|| GC.getCivilizationInfo(getCivilizationType()).hasTrait(eTrait); // AGDM addition
 }
 
 bool CvPlayer::isHuman() const

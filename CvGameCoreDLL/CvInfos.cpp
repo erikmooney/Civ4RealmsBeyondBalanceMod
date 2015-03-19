@@ -9497,6 +9497,7 @@ m_iActionSoundScriptId(0),
 m_iDerivativeCiv(NO_CIVILIZATION),
 m_bPlayable(false),
 m_bAIPlayable(false),
+m_pbTraits(NULL), // AGDM addition
 m_piCivilizationBuildings(NULL),
 m_piCivilizationUnits(NULL),
 m_piCivilizationFreeUnitsClass(NULL),
@@ -9518,6 +9519,7 @@ m_paszCityNames(NULL)
 //------------------------------------------------------------------------------------------------------
 CvCivilizationInfo::~CvCivilizationInfo()
 {
+	SAFE_DELETE_ARRAY(m_pbTraits); // AGDM addition
 	SAFE_DELETE_ARRAY(m_piCivilizationBuildings);
 	SAFE_DELETE_ARRAY(m_piCivilizationUnits);
 	SAFE_DELETE_ARRAY(m_piCivilizationFreeUnitsClass);
@@ -9629,6 +9631,14 @@ void CvCivilizationInfo::setArtDefineTag(const TCHAR* szVal)
 
 // Arrays
 
+// AGDM addition
+bool CvCivilizationInfo::hasTrait(int i) const
+{
+	FAssertMsg(i < GC.getNumTraitInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_pbTraits ? m_pbTraits[i] : false; 
+}
+
 int CvCivilizationInfo::getCivilizationBuildings(int i) const		
 {
 	FAssertMsg(i < GC.getNumBuildingClassInfos(), "Index out of bounds");
@@ -9737,6 +9747,11 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 
 	// Arrays
 
+	// AGDM addition
+	SAFE_DELETE_ARRAY(m_pbTraits);
+	m_pbTraits = new bool[GC.getNumTraitInfos()];
+	stream->Read(GC.getNumTraitInfos(), m_pbTraits);
+
 	SAFE_DELETE_ARRAY(m_piCivilizationBuildings);
 	m_piCivilizationBuildings = new int[GC.getNumBuildingClassInfos()];
 	stream->Read(GC.getNumBuildingClassInfos(), m_piCivilizationBuildings);
@@ -9799,6 +9814,7 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 
 	// Arrays
 
+	stream->Write(GC.getNumTraitInfos(), m_pbTraits); // AGDM addition
 	stream->Write(GC.getNumBuildingClassInfos(), m_piCivilizationBuildings);
 	stream->Write(GC.getNumUnitClassInfos(), m_piCivilizationUnits);
 	stream->Write(GC.getNumUnitClassInfos(), m_piCivilizationFreeUnitsClass);
@@ -9821,6 +9837,9 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	}
 
 	int j, iNumSibs;
+
+	// AGDM addition
+	pXML->SetVariableListTagPair(&m_pbTraits, "Traits", sizeof(GC.getTraitInfo((TraitTypes)0)), GC.getNumTraitInfos());
 
 	pXML->GetChildXmlValByName(m_szShortDescriptionKey, "ShortDescription");
 	// Get the Text from Text/Civ4GameTextXML.xml

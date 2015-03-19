@@ -99,10 +99,19 @@
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
 			<BuildingHealthChanges/>
-			<BuildingSEYieldChanges/>
+			<BuildingSEYieldChanges>
+				<BuildingSEYieldChange>
+					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
+					<BuildingYieldChanges>
+						<iYield>1</iYield>
+						<iYield>1</iYield>
+						<iYield>1</iYield>
+					</BuildingYieldChanges>
+				</BuildingSEYieldChange>
+			</BuildingSEYieldChanges>
 			<BuildingSEYieldModifiers>
 				<BuildingSEYieldModifier>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
+					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
 					<BuildingYieldModifiers>
 						<iYield>0</iYield>
 						<iYield>10</iYield>
@@ -112,15 +121,29 @@
 				<BuildingSEYieldModifier>
 					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
 					<BuildingYieldModifiers>
-						<iYield>0</iYield>
 						<iYield>50</iYield>
-						<iYield>-50</iYield>
+						<iYield>50</iYield>
+						<iYield>20</iYield>
 					</BuildingYieldModifiers>
 				</BuildingSEYieldModifier>
 			</BuildingSEYieldModifiers>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
-			<BuildingSEFreeSpecialistCounts/>
+			<BuildingSEFreeSpecialistCounts>
+				<BuildingSEFreeSpecialistCount>
+					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
+					<BuildingFreeSpecialistCounts>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+							<iFreeSpecialistCount>1</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+						<BuildingFreeSpecialistCount>
+							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+							<iFreeSpecialistCount>1</iFreeSpecialistCount>
+						</BuildingFreeSpecialistCount>
+					</BuildingFreeSpecialistCounts>
+				</BuildingSEFreeSpecialistCount>
+			</BuildingSEFreeSpecialistCounts>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>

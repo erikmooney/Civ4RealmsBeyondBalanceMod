@@ -1251,9 +1251,6 @@ protected:
 	CvPopupQueue m_listPopups;
 	CvDiploQueue m_listDiplomacy;
 	
-	//plako for RBmod (diplo+pause problem fix)
-	CvDiploQueue m_listDiplomacyEmpty; 
-
 	// novice for RtR
 	CvDiploQueue m_listDiplomacyEmpty;
 

@@ -12458,17 +12458,9 @@ void CvPlayer::clearDiplomacy()
 
 const CvDiploQueue& CvPlayer::getDiplomacy() const
 {
-<<<<<<< HEAD:CvPlayer.cpp
-	//Plako for RBmod - (pause+diplo window problem fix)
-	if (GC.getGameINLINE().isPaused()) {
-		return m_listDiplomacyEmpty;
-	}
-	
-=======
 	if (GC.getGameINLINE().isPaused() && GC.getGameINLINE().isPitboss() && GC.getDefineINT("ENABLE_PITBOSS_PAUSE_FIX") > 0) {
         return m_listDiplomacyEmpty;
     }
->>>>>>> pr/1:CvGameCoreDLL/CvPlayer.cpp
 	return (m_listDiplomacy);
 }
 

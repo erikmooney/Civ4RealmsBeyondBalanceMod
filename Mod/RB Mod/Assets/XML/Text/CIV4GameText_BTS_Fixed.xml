@@ -434,115 +434,12 @@
 		<Spanish>Los [COLOR_BUILDING_TEXT]Duns[COLOR_REVERT], los equivalentes celtas de las [COLOR_BUILDING_TEXT]Murallas[COLOR_REVERT], aumentan las defensas de una ciudad contra unidades anteriores a las armas de p&#243;lvora y otorgan a todas las unidades pertinentes que se construyan en esa ciudad el ascenso a [COLOR_HIGHLIGHT_TEXT]Guerra de guerrillas II[COLOR_REVERT].</Spanish>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_YIELD_CHANGE</Tag>
-		<English>[ICON_BULLET]%D1_Change%F2_Icon from[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Change%F2_Icon :[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Change%F2_Icon das Geb&#228;ude[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Change%F2_Icon da[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change%F2_Icon por[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_YIELD_MODIFIER</Tag>
-		<English>[ICON_BULLET]%D1_Mod%%%F2_Icon from[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Mod%%%F2_Icon :[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Mod%%%F2_Icon das Geb&#228;ude[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Mod%%%F2_Icon da[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Mod%%%F2_Icon por[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_COMMERCE_CHANGE</Tag>
-		<English>[ICON_BULLET]%D1_Change%F2_Icon from[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Change%F2_Icon :[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Change%F2_Icon das Geb&#228;ude[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Change%F2_Icon da[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change%F2_Icon por[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_COMMERCE_MODIFIER</Tag>
-		<English>[ICON_BULLET]%D1_Mod%%%F2_Icon from[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Mod%%%F2_Icon :[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Mod%%%F2_Icon das Geb&#228;ude[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Mod%%%F2_Icon da[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Mod%%%F2_Icon por[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_FREE_EXPERIENCE</Tag>
-		<English>[ICON_BULLET]New Units Receive %D1_Change Experience Points from [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</English>
-		<French>[ICON_BULLET]Les nouvelles unit&#233;s b&#233;n&#233;ficient de %D1_Change EXP : [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</French>
-		<German>[ICON_BULLET]Neue Einheiten erhalten %D1_Change Erfahrungspunkte das Geb&#228;ude [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</German>
-		<Italian>[ICON_BULLET]Le nuove unit&#224; ricevono %D1_Change punti esperienza da [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</Italian>
-		<Spanish>[ICON_BULLET]Las nuevas unidades reciben %D1_Change [NUM1:punto de experiencia:puntos de experiencia] por [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_MILITARY_PRODUCTION</Tag>
-		<English>[ICON_BULLET]%D1_Mod%% Military Unit Production from [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</English>
-		<French>[ICON_BULLET]%D1_Mod%% de production d'unit&#233;s militaires : [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</French>
-		<German>[ICON_BULLET]%D1_Mod%% Produktion von Milit&#228;reinheiten das Geb&#228;ude [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</German>
-		<Italian>[ICON_BULLET]%D1_Mod%% di produzione nelle unit&#224; militari da [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Mod%% a la producci&#243;n de unidades militares por [COLOR_BUILDING_TEXT][LINK=literal]%s2_Building[\LINK][COLOR_REVERT]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_CIVIC_BUILDING_FREE_SPECIALIST</Tag>
-		<English>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] from[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] :[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] das Geb&#228;ude[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] da[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] por[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_XP</Tag>
-		<English>[ICON_BULLET]%D1_Change Experience Points with[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Change EXP avec[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Change Erfahrungspunkte mit[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Change punti esperienza con[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change [NUM1:punto de experiencia:puntos de experiencia] con[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_XP_LONG</Tag>
-		<English>[ICON_BULLET]New Units Receive %D1_Change Experience Points with[SPACE]</English>
-		<French>[ICON_BULLET]Les nouvelles unit&#233;s b&#233;n&#233;ficient de %D1_Change EXP avec[SPACE]</French>
-		<German>[ICON_BULLET]Neue Einheiten erhalten %D1_Change Erfahrungspunkte mit[SPACE]</German>
-		<Italian>[ICON_BULLET]Le nuove unit&#224; ricevono %D1_Change punti esperienza con[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]Las nuevas unidades reciben %D1_Change [NUM1:punto de experiencia:puntos de experiencia] con[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_BUILDING_CIVIC_FREE_SPECIALIST</Tag>
-		<English>[ICON_BULLET]%D1_Change Free [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] with[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Change Donne un [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratuit avec[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Change freien Spezialisten [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] mit[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis con[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis con[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_BUILDING_CIVIC_WITH</Tag>
-		<English>[SPACE]with[SPACE]</English>
-		<French>[SPACE]avec[SPACE]</French>
-		<German>[SPACE]mit[SPACE]</German>
-		<Italian>[SPACE]con[SPACE]</Italian>
-		<Spanish>[SPACE]con[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_BUILDING_CIVIC_MILITARY_PRODUCTION</Tag>
-		<English>[ICON_BULLET]%D1_Mod%% Military Unit Production with[SPACE]</English>
-		<French>[ICON_BULLET]%D1_Mod%% de production d'unit&#233;s militaires avec[SPACE]</French>
-		<German>[ICON_BULLET]%D1_Mod%% Produktion von Milit&#228;reinheiten mit[SPACE]</German>
-		<Italian>[ICON_BULLET]%D1_Mod%% di produzione nelle unit&#224; militari con[SPACE]</Italian>
-		<Spanish>[ICON_BULLET]%D1_Mod%% a la producci&#243;n de unidades militares con[SPACE]</Spanish>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MISC_TRAITS_MAINT</Tag>
-		<English>%s1_MaintNum [ICON_GOLD]: Leader traits</English>
-		<French>%s1_MaintNum [ICON_GOLD] : traits de caract&#232;re</French>
-		<German>%s1_MaintNum [ICON_GOLD]: Eigenschaften Staatsoberh&#228;upterns</German>
-		<Italian>%s1_MaintNum [ICON_GOLD]: caratteristiche dei leader</Italian>
-		<Spanish>%s1_MaintNum [ICON_GOLD]: rasgos de los l&#237;deres</Spanish>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_TRAIT_CITY_UPKEEP_MODIFIER</Tag>
-		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% City Maintenance</English>
-		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Entretien ville</French>
-		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Stadtunterhalt</German>
-		<Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Mantenimento citt&#224;</Italian>
-		<Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Mantenimiento de las ciudades</Spanish>
+		<English>[ICON_BULLET]-25% city maintenance</English>
+		<French>[ICON_BULLET]-25% city maintenance</French>
+		<German>[ICON_BULLET]-25% city maintenance</German>
+		<Italian>[ICON_BULLET]-25% city maintenance</Italian>
+		<Spanish>[ICON_BULLET]-25% city maintenance</Spanish>
 	</TEXT>
+	
 </Civ4GameText>

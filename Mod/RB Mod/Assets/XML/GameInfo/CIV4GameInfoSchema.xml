@@ -779,6 +779,14 @@
 	<ElementType name="BuildingHappinessChanges" content="eltOnly">
 		<element type="BuildingHappinessChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="iExtraSpecialistCount" content="textOnly" dt:type="int"/>
+	<ElementType name="RtRExtraSpecialistCount" content="eltOnly">
+		<element type="SpecialistType"/>
+		<element type="iExtraSpecialistCount"/>
+	</ElementType>
+	<ElementType name="RtRExtraSpecialistCounts" content="eltOnly">
+		<element type="RtRExtraSpecialistCount" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="iHealthChange" content="textOnly" dt:type="int"/>
 	<ElementType name="BuildingHealthChange" content="eltOnly">
 		<element type="BuildingType"/>
@@ -868,6 +876,7 @@
 		<element type="SpecialBuildingNotRequireds"/>
 		<element type="SpecialistValids"/>
 		<element type="BuildingHappinessChanges"/>
+		<element type="RtRExtraSpecialistCounts"/>
 		<element type="BuildingHealthChanges"/>
 		<element type="BuildingSEYieldChanges"/>
 		<element type="BuildingSEYieldModifiers"/>

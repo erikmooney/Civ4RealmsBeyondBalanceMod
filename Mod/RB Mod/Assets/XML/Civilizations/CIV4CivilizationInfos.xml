@@ -7,12 +7,7 @@
 <Civ4CivilizationInfos xmlns="x-schema:CIV4CivilizationsSchema.xml">
 	<CivilizationInfos>
 		<CivilizationInfo>
-			<Traits>
-				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
-					<bTrait>1</bTrait>
-				</Trait>
-			</Traits>
+			<Traits/>
 			<Type>CIVILIZATION_AMERICA</Type>
 			<Description>TXT_KEY_CIV_AMERICA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_AMERICA_SHORT_DESC</ShortDescription>
@@ -88,8 +83,8 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_GROCER</BuildingClassType>
-					<BuildingType>BUILDING_AMERICAN_MALL</BuildingType>
+					<BuildingClassType>BUILDINGCLASS_BARRACKS</BuildingClassType>
+					<BuildingType>BUILDING_AMERICAN_ARMOURY</BuildingType>
 				</Building>
 			</Buildings>
 			<Units>
@@ -227,7 +222,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_HUNTING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -250,7 +245,7 @@
 			<CivilizationActionSound>AS3D_ARABIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_AZTEC</Type>
 			<Description>TXT_KEY_CIV_AZTEC_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_AZTEC_SHORT_DESC</ShortDescription>
@@ -326,7 +321,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -353,7 +348,7 @@
 			<CivilizationActionSound>AS3D_AZTEC_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_BABYLON</Type>
 			<Description>TXT_KEY_CIV_BABYLON_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_BABYLON_SHORT_DESC</ShortDescription>
@@ -460,7 +455,7 @@
 			<CivilizationActionSound>AS3D_BABYLON_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_BYZANTIUM</Type>
 			<Description>TXT_KEY_CIV_BYZANTIUM_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_BYZANTIUM_SHORT_DESC</ShortDescription>
@@ -548,7 +543,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_AGRICULTURE</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -571,7 +566,7 @@
 			<CivilizationActionSound>AS3D_BYZANTIUM_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_CARTHAGE</Type>
 			<Description>TXT_KEY_CIV_CARTHAGE_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_CARTHAGE_SHORT_DESC</ShortDescription>
@@ -679,7 +674,7 @@
 			<CivilizationActionSound>AS3D_CARTHAGE_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_CELT</Type>
 			<Description>TXT_KEY_CIV_CELT_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_CELT_SHORT_DESC</ShortDescription>
@@ -768,7 +763,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_FISHING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -795,7 +790,7 @@
 			<CivilizationActionSound>AS3D_CELTS_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_CHINA</Type>
 			<Description>TXT_KEY_CIV_CHINA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_CHINA_SHORT_DESC</ShortDescription>
@@ -910,7 +905,7 @@
 			<CivilizationActionSound>AS3D_CHINA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_EGYPT</Type>
 			<Description>TXT_KEY_CIV_EGYPT_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_EGYPT_SHORT_DESC</ShortDescription>
@@ -1037,7 +1032,7 @@
 			<CivilizationActionSound>AS3D_EGYPT_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_ENGLAND</Type>
 			<Description>TXT_KEY_CIV_ENGLAND_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_ENGLAND_SHORT_DESC</ShortDescription>
@@ -1150,7 +1145,7 @@
 			<CivilizationActionSound>AS3D_ENGLAND_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_ETHIOPIA</Type>
 			<Description>TXT_KEY_CIV_ETHIOPIA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_ETHIOPIA_SHORT_DESC</ShortDescription>
@@ -1228,7 +1223,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_HUNTING</TechType>
+					<TechType>TECH_AGRICULTURE</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -1255,7 +1250,7 @@
 			<CivilizationActionSound>AS3D_ETHIOPIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_FRANCE</Type>
 			<Description>TXT_KEY_CIV_FRANCE_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_FRANCE_SHORT_DESC</ShortDescription>
@@ -1370,7 +1365,7 @@
 			<CivilizationActionSound>AS3D_FRANCE_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_GERMANY</Type>
 			<Description>TXT_KEY_CIV_GERMANY_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_GERMANY_SHORT_DESC</ShortDescription>
@@ -1494,7 +1489,7 @@
 			<CivilizationActionSound>AS3D_GERMANY_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_GREECE</Type>
 			<Description>TXT_KEY_CIV_GREECE_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_GREECE_SHORT_DESC</ShortDescription>
@@ -1610,7 +1605,7 @@
 			<CivilizationActionSound>AS3D_GREECE_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_HOLY_ROMAN</Type>
 			<Description>TXT_KEY_CIV_HOLY_ROMAN_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_HOLY_ROMAN_SHORT_DESC</ShortDescription>
@@ -1696,7 +1691,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_MINING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -1723,7 +1718,7 @@
 			<CivilizationActionSound>AS3D_HOLY_ROMAN_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_INCA</Type>
 			<Description>TXT_KEY_CIV_INCA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_INCA_SHORT_DESC</ShortDescription>
@@ -1797,11 +1792,11 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_AGRICULTURE</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_MINING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -1824,7 +1819,7 @@
 			<CivilizationActionSound>AS3D_INCA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_INDIA</Type>
 			<Description>TXT_KEY_CIV_INDIA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_INDIA_SHORT_DESC</ShortDescription>
@@ -1961,7 +1956,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_FISHING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -1992,7 +1987,7 @@
 			<CivilizationActionSound>AS3D_INDIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_JAPAN</Type>
 			<Description>TXT_KEY_CIV_JAPAN_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_JAPAN_SHORT_DESC</ShortDescription>
@@ -2094,7 +2089,7 @@
 			<CivilizationActionSound>AS3D_JAPAN_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_KHMER</Type>
 			<Description>TXT_KEY_CIV_KHMER_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_KHMER_SHORT_DESC</ShortDescription>
@@ -2202,7 +2197,7 @@
 			<CivilizationActionSound>AS3D_KHMER_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_KOREA</Type>
 			<Description>TXT_KEY_CIV_KOREA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_KOREA_SHORT_DESC</ShortDescription>
@@ -2299,7 +2294,7 @@
 			<CivilizationActionSound>AS3D_KOREA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_MALI</Type>
 			<Description>TXT_KEY_CIV_MALI_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_MALI_SHORT_DESC</ShortDescription>
@@ -2396,7 +2391,7 @@
 			<CivilizationActionSound>AS3D_MALI_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_MAYA</Type>
 			<Description>TXT_KEY_CIV_MAYA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_MAYA_SHORT_DESC</ShortDescription>
@@ -2484,7 +2479,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -2507,7 +2502,7 @@
 			<CivilizationActionSound>AS3D_MAYA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_MONGOL</Type>
 			<Description>TXT_KEY_CIV_MONGOL_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_MONGOL_SHORT_DESC</ShortDescription>
@@ -2611,7 +2606,7 @@
 			<CivilizationActionSound>AS3D_MONGOL_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_NATIVE_AMERICA</Type>
 			<Description>TXT_KEY_CIV_NATIVE_AMERICA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_NATIVE_AMERICA_SHORT_DESC</ShortDescription>
@@ -2701,11 +2696,11 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_AGRICULTURE</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_FISHING</TechType>
+					<TechType>TECH_HUNTING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -2728,7 +2723,7 @@
 			<CivilizationActionSound>AS3D_NATIVE_AMERICA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_NETHERLANDS</Type>
 			<Description>TXT_KEY_CIV_NETHERLANDS_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_NETHERLANDS_SHORT_DESC</ShortDescription>
@@ -2840,7 +2835,7 @@
 			<CivilizationActionSound>AS3D_NETHERLANDS_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_OTTOMAN</Type>
 			<Description>TXT_KEY_CIV_OTTOMAN_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_OTTOMAN_SHORT_DESC</ShortDescription>
@@ -2920,7 +2915,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_AGRICULTURE</TechType>
+					<TechType>TECH_HUNTING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -2947,7 +2942,7 @@
 			<CivilizationActionSound>AS3D_OTTOMAN_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_PERSIA</Type>
 			<Description>TXT_KEY_CIV_PERSIA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_PERSIA_SHORT_DESC</ShortDescription>
@@ -3083,7 +3078,7 @@
 			<CivilizationActionSound>AS3D_PERSIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_PORTUGAL</Type>
 			<Description>TXT_KEY_CIV_PORTUGAL_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_PORTUGAL_SHORT_DESC</ShortDescription>
@@ -3195,7 +3190,7 @@
 			<CivilizationActionSound>AS3D_PORTUGAL_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_ROME</Type>
 			<Description>TXT_KEY_CIV_ROME_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_ROME_SHORT_DESC</ShortDescription>
@@ -3294,7 +3289,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MINING</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -3321,7 +3316,7 @@
 			<CivilizationActionSound>AS3D_ROME_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_RUSSIA</Type>
 			<Description>TXT_KEY_CIV_RUSSIA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_RUSSIA_SHORT_DESC</ShortDescription>
@@ -3434,7 +3429,7 @@
 			<CivilizationActionSound>AS3D_RUSSIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_SPAIN</Type>
 			<Description>TXT_KEY_CIV_SPAIN_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_SPAIN_SHORT_DESC</ShortDescription>
@@ -3519,7 +3514,7 @@
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
-					<TechType>TECH_MYSTICISM</TechType>
+					<TechType>TECH_THE_WHEEL</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 			</FreeTechs>
@@ -3542,7 +3537,7 @@
 			<CivilizationActionSound>AS3D_SPAIN_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_SUMERIA</Type>
 			<Description>TXT_KEY_CIV_SUMERIA_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_SUMERIA_SHORT_DESC</ShortDescription>
@@ -3646,7 +3641,7 @@
 			<CivilizationActionSound>AS3D_SUMERIA_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_VIKING</Type>
 			<Description>TXT_KEY_CIV_VIKING_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_VIKING_SHORT_DESC</ShortDescription>
@@ -3752,7 +3747,7 @@
 			<CivilizationActionSound>AS3D_VIKING_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_ZULU</Type>
 			<Description>TXT_KEY_CIV_ZULU_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_ZULU_SHORT_DESC</ShortDescription>
@@ -3855,7 +3850,7 @@
 			<CivilizationActionSound>AS3D_ZULU_ORDER</CivilizationActionSound>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_MINOR</Type>
 			<Description>TXT_KEY_CIV_MINOR_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_MINOR_SHORT_DESC</ShortDescription>
@@ -3992,7 +3987,7 @@
 			<CivilizationActionSound/>
 		</CivilizationInfo>
 		<CivilizationInfo>
-			<Traits/>
+		<Traits/>
 			<Type>CIVILIZATION_BARBARIAN</Type>
 			<Description>TXT_KEY_CIV_BARBARIAN_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_BARBARIAN_SHORT_DESC</ShortDescription>

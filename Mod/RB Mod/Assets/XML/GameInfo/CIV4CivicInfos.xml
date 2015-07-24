@@ -2,41 +2,9 @@
 <!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
 <Civ4CivicInfos xmlns="x-schema:CIV4GameInfoSchema.xml">
 	<!-- Sid Meier's Civilization 4 -->
-
-
-
-
-
-
-
-
 	<!-- Copyright Firaxis Games 2005 -->
-
-
-
-
-
-
-
-
 	<!-- -->
-
-
-
-
-
-
-
-
 	<!-- Civic Infos -->
-
-
-
-
-
-
-
-
 	<CivicInfos>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_GOVERNMENT</CivicOptionType>
@@ -98,52 +66,26 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+			</RtRExtraSpecialistCounts>
 			<BuildingHealthChanges/>
-			<BuildingSEYieldChanges>
-				<BuildingSEYieldChange>
-					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
-					<BuildingYieldChanges>
-						<iYield>1</iYield>
-						<iYield>1</iYield>
-						<iYield>1</iYield>
-					</BuildingYieldChanges>
-				</BuildingSEYieldChange>
-			</BuildingSEYieldChanges>
-			<BuildingSEYieldModifiers>
-				<BuildingSEYieldModifier>
-					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
-					<BuildingYieldModifiers>
-						<iYield>0</iYield>
-						<iYield>10</iYield>
-						<iYield>10</iYield>
-					</BuildingYieldModifiers>
-				</BuildingSEYieldModifier>
-				<BuildingSEYieldModifier>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingYieldModifiers>
-						<iYield>50</iYield>
-						<iYield>50</iYield>
-						<iYield>20</iYield>
-					</BuildingYieldModifiers>
-				</BuildingSEYieldModifier>
-			</BuildingSEYieldModifiers>
+			<BuildingSEYieldChanges/>
+			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
-			<BuildingSEFreeSpecialistCounts>
-				<BuildingSEFreeSpecialistCount>
-					<BuildingType>BUILDINGCLASS_GRANARY</BuildingType>
-					<BuildingFreeSpecialistCounts>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
-							<iFreeSpecialistCount>1</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
-							<iFreeSpecialistCount>1</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-					</BuildingFreeSpecialistCounts>
-				</BuildingSEFreeSpecialistCount>
-			</BuildingSEFreeSpecialistCounts>
+			<BuildingSEFreeSpecialistCounts/>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
@@ -210,6 +152,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -229,7 +172,7 @@
 			<Civilopedia>TXT_KEY_CIVIC_REPRESENTATION_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_REPRESENTATION_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/Civics/Representation.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,6,2</Button>
-			<TechPrereq>TECH_CONSTITUTION</TechPrereq>
+			<TechPrereq>TECH_NATIONALISM</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
 			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
@@ -286,6 +229,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -305,7 +249,7 @@
 			<Civilopedia>TXT_KEY_CIVIC_POLICE_STATE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_POLICE_STATE_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/Civics/Police_State.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,5,2</Button>
-			<TechPrereq>TECH_FASCISM</TechPrereq>
+			<TechPrereq>TECH_MILITARY_SCIENCE</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
 			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
@@ -358,6 +302,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -435,6 +380,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -454,7 +400,7 @@
 					</ImprovementYields>
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
-			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_PRESIDENT</WeLoveTheKing>
+			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_SMIZMAR</WeLoveTheKing>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_LEGAL</CivicOptionType>
@@ -516,49 +462,25 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+					<iExtraSpecialistCount>0</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+			</RtRExtraSpecialistCounts>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
-			<BuildingSECommerceChanges>
-				<BuildingSECommerceChange>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<BuildingCommerceChanges>
-						<iCommerce>2</iCommerce>
-						<iCommerce>1</iCommerce>
-						<iCommerce>0</iCommerce>
-						<iCommerce>0</iCommerce>
-					</BuildingCommerceChanges>
-				</BuildingSECommerceChange>
-				<BuildingSECommerceChange>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingCommerceChanges>
-						<iCommerce>0</iCommerce>
-						<iCommerce>1</iCommerce>
-						<iCommerce>0</iCommerce>
-						<iCommerce>4</iCommerce>
-					</BuildingCommerceChanges>
-				</BuildingSECommerceChange>
-			</BuildingSECommerceChanges>
-			<BuildingSECommerceModifiers>
-				<BuildingSECommerceModifier>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<BuildingCommerceModifiers>
-						<iCommerce>0</iCommerce>
-						<iCommerce>10</iCommerce>
-						<iCommerce>10</iCommerce>
-						<iCommerce>10</iCommerce>
-					</BuildingCommerceModifiers>
-				</BuildingSECommerceModifier>
-				<BuildingSECommerceModifier>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingCommerceModifiers>
-						<iCommerce>25</iCommerce>
-						<iCommerce>50</iCommerce>
-						<iCommerce>-50</iCommerce>
-						<iCommerce>50</iCommerce>
-					</BuildingCommerceModifiers>
-				</BuildingSECommerceModifier>
-			</BuildingSECommerceModifiers>
+			<BuildingSECommerceChanges/>
+			<BuildingSECommerceModifiers/>
 			<BuildingSEFreeSpecialistCounts/>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
@@ -575,7 +497,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Vassalage.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,1,4</Button>
 			<TechPrereq>TECH_FEUDALISM</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_MEDIUM</Upkeep>
+			<Upkeep>UPKEEP_LOW</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -589,10 +511,10 @@
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
-			<iBaseFreeUnits>5</iBaseFreeUnits>
-			<iBaseFreeMilitaryUnits>5</iBaseFreeMilitaryUnits>
-			<iFreeUnitsPopulationPercent>10</iFreeUnitsPopulationPercent>
-			<iFreeMilitaryUnitsPopulationPercent>10</iFreeMilitaryUnitsPopulationPercent>
+			<iBaseFreeUnits>10</iBaseFreeUnits>
+			<iBaseFreeMilitaryUnits>10</iBaseFreeMilitaryUnits>
+			<iFreeUnitsPopulationPercent>20</iFreeUnitsPopulationPercent>
+			<iFreeMilitaryUnitsPopulationPercent>20</iFreeMilitaryUnitsPopulationPercent>
 			<iGoldPerUnit>0</iGoldPerUnit>
 			<iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
 			<iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
@@ -626,6 +548,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -702,6 +625,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -784,6 +708,7 @@
 					<iHappinessChange>2</iHappinessChange>
 				</BuildingHappinessChange>
 			</BuildingHappinessChanges>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -814,7 +739,7 @@
 			<iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
 			<iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
 			<iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
-			<iExtraHealth>0</iExtraHealth>
+			<iExtraHealth>3</iExtraHealth>
 			<iFreeExperience>0</iFreeExperience>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
@@ -859,7 +784,13 @@
 			<Hurrys/>
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
-			<BuildingHappinessChanges/>
+			<BuildingHappinessChanges>
+				<BuildingHappinessChange>
+					<BuildingType>BUILDINGCLASS_AQUEDUCT</BuildingType>
+					<iHappinessChange>2</iHappinessChange>
+				</BuildingHappinessChange>
+			</BuildingHappinessChanges>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -871,14 +802,6 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<ImprovementYields>
-						<iYield>0</iYield>
-						<iYield>0</iYield>
-						<iYield>1</iYield>
-					</ImprovementYields>
-				</ImprovementYieldChange>
-				<ImprovementYieldChange>
 					<ImprovementType>IMPROVEMENT_PASTURE</ImprovementType>
 					<ImprovementYields>
 						<iYield>0</iYield>
@@ -887,11 +810,11 @@
 					</ImprovementYields>
 				</ImprovementYieldChange>
 				<ImprovementYieldChange>
-					<ImprovementType>IMPROVEMENT_FOREST_PRESERVE</ImprovementType>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 					<ImprovementYields>
 						<iYield>0</iYield>
 						<iYield>0</iYield>
-						<iYield>2</iYield>
+						<iYield>1</iYield>
 					</ImprovementYields>
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
@@ -957,39 +880,13 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
-			<BuildingSEFreeSpecialistCounts>
-				<BuildingSEFreeSpecialistCount>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<BuildingFreeSpecialistCounts>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
-							<iFreeSpecialistCount>1</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
-							<iFreeSpecialistCount>1</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-					</BuildingFreeSpecialistCounts>
-				</BuildingSEFreeSpecialistCount>
-				<BuildingSEFreeSpecialistCount>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingFreeSpecialistCounts>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
-							<iFreeSpecialistCount>1</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-						<BuildingFreeSpecialistCount>
-							<SpecialistType>SPECIALIST_SPY</SpecialistType>
-							<iFreeSpecialistCount>2</iFreeSpecialistCount>
-						</BuildingFreeSpecialistCount>
-					</BuildingFreeSpecialistCounts>
-				</BuildingSEFreeSpecialistCount>
-			</BuildingSEFreeSpecialistCounts>
+			<BuildingSEFreeSpecialistCounts/>
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
@@ -1061,25 +958,9 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
-			<BuildingSEYieldChanges>
-				<BuildingSEYieldChange>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<BuildingYieldChanges>
-						<iYield>2</iYield>
-						<iYield>1</iYield>
-						<iYield>0</iYield>
-					</BuildingYieldChanges>
-				</BuildingSEYieldChange>
-				<BuildingSEYieldChange>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<BuildingYieldChanges>
-						<iYield>0</iYield>
-						<iYield>1</iYield>
-						<iYield>0</iYield>
-					</BuildingYieldChanges>
-				</BuildingSEYieldChange>
-			</BuildingSEYieldChanges>
+			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
@@ -1099,7 +980,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Serfdom.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,7,2</Button>
 			<TechPrereq>TECH_FEUDALISM</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_LOW</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1150,6 +1031,20 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+			</RtRExtraSpecialistCounts>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1161,15 +1056,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges>
 				<ImprovementYieldChange>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<ImprovementYields>
-						<iYield>0</iYield>
-						<iYield>1</iYield>
-						<iYield>0</iYield>
-					</ImprovementYields>
-				</ImprovementYieldChange>
-				<ImprovementYieldChange>
-					<ImprovementType>IMPROVEMENT_WATERMILL</ImprovementType>
+					<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
 					<ImprovementYields>
 						<iYield>0</iYield>
 						<iYield>1</iYield>
@@ -1188,7 +1075,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Caste_System.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,3,1</Button>
 			<TechPrereq>TECH_CODE_OF_LAWS</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_MEDIUM</Upkeep>
+			<Upkeep>UPKEEP_HIGH</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1252,6 +1139,7 @@
 				</SpecialistValid>
 			</SpecialistValids>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1280,9 +1168,9 @@
 			<Civilopedia>TXT_KEY_CIVIC_EMANCIPATION_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_EMANCIPATION_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/Civics/Emancipation.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,6,1</Button>
-			<TechPrereq>TECH_DEMOCRACY</TechPrereq>
+			<TechPrereq>TECH_BANKING</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_LOW</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1294,7 +1182,7 @@
 			<iExtraHealth>0</iExtraHealth>
 			<iFreeExperience>0</iFreeExperience>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-			<iImprovementUpgradeRateModifier>100</iImprovementUpgradeRateModifier>
+			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
 			<iBaseFreeUnits>0</iBaseFreeUnits>
 			<iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
@@ -1315,7 +1203,7 @@
 			<bNoForeignTrade>0</bNoForeignTrade>
 			<bNoCorporations>0</bNoCorporations>
 			<bNoForeignCorporations>0</bNoForeignCorporations>
-			<iCivicPercentAnger>400</iCivicPercentAnger>
+			<iCivicPercentAnger>0</iCivicPercentAnger>
 			<bStateReligion>0</bStateReligion>
 			<bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
@@ -1333,6 +1221,20 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+				<RtRExtraSpecialistCount>
+					<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+					<iExtraSpecialistCount>2</iExtraSpecialistCount>
+				</RtRExtraSpecialistCount>
+			</RtRExtraSpecialistCounts>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1342,7 +1244,56 @@
 			<BuildingSEMilitaryProductionModifiers/>
 			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
-			<ImprovementYieldChanges/>
+			<ImprovementYieldChanges>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_MINE</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_WATERMILL</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+						<iYield>0</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_COTTAGE</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_HAMLET</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_VILLAGE</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
 		</CivicInfo>
 		<CivicInfo>
@@ -1405,40 +1356,15 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
 			<BuildingSECommerceChanges/>
 			<BuildingSECommerceModifiers/>
 			<BuildingSEFreeSpecialistCounts/>
-			<BuildingSEMilitaryProductionModifiers>
-				<BuildingSEMilitaryProductionModifier>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<iMilitaryProductionModifier>20</iMilitaryProductionModifier>
-				</BuildingSEMilitaryProductionModifier>
-				<BuildingSEMilitaryProductionModifier>
-					<BuildingType>BUILDINGCLASS_COLOSSEUM</BuildingType>
-					<iMilitaryProductionModifier>20</iMilitaryProductionModifier>
-				</BuildingSEMilitaryProductionModifier>
-				<BuildingSEMilitaryProductionModifier>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<iMilitaryProductionModifier>50</iMilitaryProductionModifier>
-				</BuildingSEMilitaryProductionModifier>
-			</BuildingSEMilitaryProductionModifiers>
-			<BuildingSEFreeExperiences>
-				<BuildingSEFreeExperience>
-					<BuildingType>BUILDINGCLASS_BARRACKS</BuildingType>
-					<iFreeExperience>2</iFreeExperience>
-				</BuildingSEFreeExperience>
-				<BuildingSEFreeExperience>
-					<BuildingType>BUILDINGCLASS_COLOSSEUM</BuildingType>
-					<iFreeExperience>2</iFreeExperience>
-				</BuildingSEFreeExperience>
-				<BuildingSEFreeExperience>
-					<BuildingType>BUILDINGCLASS_PALACE</BuildingType>
-					<iFreeExperience>3</iFreeExperience>
-				</BuildingSEFreeExperience>
-			</BuildingSEFreeExperiences>
+			<BuildingSEMilitaryProductionModifiers/>
+			<BuildingSEFreeExperiences/>
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
@@ -1450,9 +1376,9 @@
 			<Civilopedia>TXT_KEY_CIVIC_MERCANTILISM_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_MERCANTILISM_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/Civics/Mercantilism.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,4,3</Button>
-			<TechPrereq>TECH_BANKING</TechPrereq>
+			<TechPrereq>TECH_CONSTITUTION</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_MEDIUM</Upkeep>
+			<Upkeep>UPKEEP_HIGH</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1480,9 +1406,9 @@
 			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
 			<iLargestCityHappiness>0</iLargestCityHappiness>
 			<iWarWearinessModifier>0</iWarWearinessModifier>
-			<iFreeSpecialist>1</iFreeSpecialist>
+			<iFreeSpecialist>2</iFreeSpecialist>
 			<iTradeRoutes>0</iTradeRoutes>
-			<bNoForeignTrade>1</bNoForeignTrade>
+			<bNoForeignTrade>0</bNoForeignTrade>
 			<bNoCorporations>0</bNoCorporations>
 			<bNoForeignCorporations>0</bNoForeignCorporations>
 			<iCivicPercentAnger>0</iCivicPercentAnger>
@@ -1503,6 +1429,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1579,6 +1506,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1600,7 +1528,7 @@
 			<Button>,Art/Interface/Buttons/Civics/State_Property.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,5,3</Button>
 			<TechPrereq>TECH_UTOPIA</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_MEDIUM</Upkeep>
+			<Upkeep>UPKEEP_HIGH</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1655,6 +1583,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1691,9 +1620,9 @@
 			<Civilopedia>TXT_KEY_CIVIC_FREE_SPEECH_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_FREE_SPEECH_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/Civics/Free_Speech.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,2,3</Button>
-			<TechPrereq>TECH_SCIENTIFIC_METHOD</TechPrereq>
+			<TechPrereq>TECH_LIBERALISM</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_LOW</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1705,7 +1634,7 @@
 			<iExtraHealth>0</iExtraHealth>
 			<iFreeExperience>0</iFreeExperience>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
+			<iImprovementUpgradeRateModifier>100</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
 			<iBaseFreeUnits>0</iBaseFreeUnits>
 			<iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
@@ -1738,16 +1667,22 @@
 			<CapitalYieldModifiers/>
 			<TradeYieldModifiers/>
 			<CommerceModifiers>
-				<iCommerce>0</iCommerce>
+				<iCommerce>15</iCommerce>
 				<iCommerce>0</iCommerce>
 				<iCommerce>100</iCommerce>
 			</CommerceModifiers>
 			<CapitalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
-			<Hurrys/>
+			<Hurrys>
+				<Hurry>
+					<HurryType>HURRY_GOLD</HurryType>
+					<bHurry>1</bHurry>
+				</Hurry>
+			</Hurrys>
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1763,7 +1698,15 @@
 					<ImprovementYields>
 						<iYield>0</iYield>
 						<iYield>0</iYield>
-						<iYield>2</iYield>
+						<iYield>3</iYield>
+					</ImprovementYields>
+				</ImprovementYieldChange>
+				<ImprovementYieldChange>
+					<ImprovementType>IMPROVEMENT_VILLAGE</ImprovementType>
+					<ImprovementYields>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
 					</ImprovementYields>
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
@@ -1829,6 +1772,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1906,6 +1850,7 @@
 			</SpecialBuildingNotRequireds>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -1978,6 +1923,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -2050,6 +1996,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>
@@ -2126,6 +2073,7 @@
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
+			<RtRExtraSpecialistCounts/>
 			<BuildingHealthChanges/>
 			<BuildingSEYieldChanges/>
 			<BuildingSEYieldModifiers/>

@@ -617,8 +617,8 @@
 			<Type>BUILD_FOREST_PRESERVE</Type>
 			<Description>TXT_KEY_BUILD_FOREST_PRESERVE</Description>
 			<Help/>
-			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
-			<iTime>500</iTime>
+			<PrereqTech>TECH_REPLACEABLE_PARTS</PrereqTech>
+			<iTime>800</iTime>
 			<iCost>0</iCost>
 			<bKill>0</bKill>
 			<ImprovementType>IMPROVEMENT_FOREST_PRESERVE</ImprovementType>

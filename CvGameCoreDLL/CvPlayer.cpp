@@ -19699,7 +19699,11 @@ void CvPlayer::launch(VictoryTypes eVictory)
 	kTeam.finalizeProjectArtTypes();
 	kTeam.setVictoryCountdown(eVictory, kTeam.getVictoryDelay(eVictory));
 
-	gDLL->getEngineIFace()->AddLaunch(getID());
+	//Plako for RtR mod - Prevent Space ship launch crash (pitboss)
+	//Based on K-Mod change (Creadits to karadoc)
+	if (!gDLL->IsPitbossHost())
+		gDLL->getEngineIFace()->AddLaunch(getID());
+	//RtR mod end
 
 	kTeam.setCanLaunch(eVictory, false);
 

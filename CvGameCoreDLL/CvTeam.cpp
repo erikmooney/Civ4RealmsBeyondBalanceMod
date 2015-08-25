@@ -2388,8 +2388,20 @@ int CvTeam::getResearchCost(TechTypes eTech) const
 	iCost *= GC.getHandicapInfo(getHandicapType()).getResearchPercent();
 	iCost /= 100;
 
-	iCost *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getResearchPercent();
-	iCost /= 100;
+	int iWorldSizeModifier = GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getResearchPercent();
+	if(GC.getDefineINT("TECH_COST_SCALING_ALGORITHM") == 1)
+	{
+		// AGDM addition, use algorithm described here: http://realmsbeyond.net/forums/showthread.php?tid=6632&pid=465879#pid465879
+		// ((log(cost of tech) / log (40) - 1) * (1.2X + 0.3)
+        double fX = (log((double)GC.getTechInfo(eTech).getResearchCost()) / log((double)40.0)) - 1;
+		fX *= (((double)iWorldSizeModifier-100.0)*0.012 + 0.3);
+		iCost = (int)(iCost * (1.0 + fX));
+	}
+	else
+	{
+		iCost *= iWorldSizeModifier;
+		iCost /= 100;
+	}
 
 	iCost *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
 	iCost /= 100;

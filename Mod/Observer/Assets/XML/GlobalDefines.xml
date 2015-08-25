@@ -1675,6 +1675,10 @@
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
 	<Define>
+		<DefineName>TECH_COST_CIV_COUNT_HARD_CAP_LOWER</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>TECH_COST_MODIFIER_PER_ERA_MULTIPLIER</DefineName>
 		<fDefineFloatVal>0</fDefineFloatVal>
 	</Define>
@@ -1722,5 +1726,24 @@
 		<DefineName>PITBOSS_PORTAL_LOG_DIRECTORY</DefineName>
 		<DefineTextVal>c:/temp</DefineTextVal>
 	</Define>
-	
+	<Define>
+		<DefineName>ENABLE_PITBOSS_PORTAL_GAMESTATE_LOGGING</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>ENABLE_EXTENDED_RECOVERY_SAVES</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>ENABLE_PITBOSS_PAUSE_FIX</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_SCALING_ALGORITHM</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>EXTRA_SETTLED_GREAT_PEOPLE_FROM_PHI</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
 </Civ4Defines>

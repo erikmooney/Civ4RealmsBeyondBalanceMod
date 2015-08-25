@@ -1249,7 +1249,10 @@ protected:
 
 	CvMessageQueue m_listGameMessages; 
 	CvPopupQueue m_listPopups;
-	CvDiploQueue m_listDiplomacy; 
+	CvDiploQueue m_listDiplomacy;
+	
+	// novice for RtR
+	CvDiploQueue m_listDiplomacyEmpty;
 
 	CvTurnScoreMap m_mapScoreHistory;
 	CvTurnScoreMap m_mapEconomyHistory;

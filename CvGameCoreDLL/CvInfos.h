@@ -1363,6 +1363,7 @@ public:
 	int getSpecialistExtraCommerce(int i) const;				// Exposed to Python
 	int* getSpecialistExtraCommerceArray() const;
 	int getBuildingHappinessChanges(int i) const;				// Exposed to Python
+	int getRtRExtraSpecialistCounts(int i) const;				//Plako for RtR mod 21.7.2015
 	int getBuildingHealthChanges(int i) const;				// Exposed to Python
 	int getFeatureHappinessChanges(int i) const;				// Exposed to Python
 
@@ -1372,8 +1373,23 @@ public:
 
 	int getImprovementYieldChanges(int i, int j) const;				// Exposed to Python
 
+	int getBuildingYieldChanges(int i, int j) const; // AGDM addition
+	int *getBuildingYieldChangeArray(int i) const; // AGDM addition
+	int getBuildingYieldModifiers(int i, int j) const; // AGDM addition
+	int *getBuildingYieldModifierArray(int i) const; // AGDM addition
+	int getBuildingCommerceChanges(int i, int j) const; // AGDM addition
+	int *getBuildingCommerceChangeArray(int i) const; // AGDM addition
+	int getBuildingCommerceModifiers(int i, int j) const; // AGDM addition
+	int *getBuildingCommerceModifierArray(int i) const; // AGDM addition
+	int getBuildingFreeSpecialistCounts(int i, int j) const; // AGDM addition
+	int getBuildingFreeExperiences(int i) const; // AGDM addition
+	int getBuildingMilitaryProductionModifiers(int i) const; // AGDM addition
+
+	void delete2DimArray(int **arr, int size1);
+	int **read2DimArray(FDataStreamBase* stream, int size1, int size2);
 	void read(FDataStreamBase* stream);
 	void write(FDataStreamBase* stream);
+	void write2DimArray(FDataStreamBase* stream, int** arr, int size1, int size2);
 
 	bool read(CvXMLLoadUtility* pXML);
 
@@ -1437,8 +1453,17 @@ protected:
 	int* m_piCapitalCommerceModifier;
 	int* m_piSpecialistExtraCommerce;
 	int* m_paiBuildingHappinessChanges;
+	int* m_paiRtRExtraSpecialistCounts; //Plako for RtR mod 22.7.2015
 	int* m_paiBuildingHealthChanges;
 	int* m_paiFeatureHappinessChanges;
+
+	int** m_ppiBuildingYieldChanges;					// AGDM addition, xml tag <BuildingSEYieldChanges/>
+	int** m_ppiBuildingYieldModifiers;				// AGDM addition, xml tag <BuildingSEYieldModifiers/>
+	int** m_ppiBuildingCommerceChanges;				// AGDM addition, xml tag <BuildingSECommerceChanges/>
+	int** m_ppiBuildingCommerceModifiers;			// AGDM addition, xml tag <BuildingSECommerceModifiers/>
+	int** m_ppiBuildingFreeSpecialistCounts;			// AGDM addition, xml tag <BuildingSEFreeSpecialistCounts/>
+	int* m_paiBuildingMilitaryProductionModifiers;	// AGDM addition, xml tag <BuildingSEMilitaryProductionModifiers/>
+	int* m_paiBuildingFreeExperiences;				// AGDM addition, xml tag <BuildingSEFreeExperiences/>
 
 	bool* m_pabHurry;
 	bool* m_pabSpecialBuildingNotRequired;
@@ -2154,6 +2179,7 @@ public:
 	DllExport void setArtDefineTag(const TCHAR* szVal);
 	// Arrays
 
+	bool hasTrait(int i) const; // AGDM addition
 	DllExport int getCivilizationBuildings(int i) const;				// Exposed to Python
 	DllExport int getCivilizationUnits(int i) const;				// Exposed to Python
 	DllExport int getCivilizationFreeUnitsClass(int i) const;				// Exposed to Python
@@ -2197,6 +2223,8 @@ protected:
 	CvWString m_szShortDescriptionKey;
 	CvWString m_szAdjectiveKey;
 	// Arrays
+
+	bool* m_pbTraits; // AGDM addition
 
 	int* m_piCivilizationBuildings;
 	int* m_piCivilizationUnits;
@@ -3261,9 +3289,11 @@ public:
 	int getPeakChange() const;				// Exposed to Python
 	int getLakeChange() const;				// Exposed to Python
 	int getCityChange() const;				// Exposed to Python
+	int getCapitalChange() const;				// Exposed to Python, AGDM addition
 	int getPopulationChangeOffset() const;				// Exposed to Python
 	int getPopulationChangeDivisor() const;				// Exposed to Python
 	int getMinCity() const;				// Exposed to Python
+	int getMinCapital() const;				// Exposed to Python. AGDM addition
 	int getTradeModifier() const;				// Exposed to Python
 	int getGoldenAgeYield() const;				// Exposed to Python
 	int getGoldenAgeYieldThreshold() const;				// Exposed to Python
@@ -3284,9 +3314,11 @@ protected:
 	int m_iPeakChange;
 	int m_iLakeChange;
 	int m_iCityChange;							
+	int m_iCapitalChange; // AGDM addition
 	int m_iPopulationChangeOffset;		
 	int m_iPopulationChangeDivisor;		
 	int m_iMinCity;									
+	int m_iMinCapital; // AGDM addition
 	int m_iTradeModifier;						
 	int m_iGoldenAgeYield;					
 	int m_iGoldenAgeYieldThreshold;		

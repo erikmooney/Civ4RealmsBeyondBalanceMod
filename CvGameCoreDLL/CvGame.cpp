@@ -269,6 +269,9 @@ void CvGame::init(HandicapTypes eHandicap)
 	AI_init();
 
 	doUpdateCacheOnTurn();
+
+	// novice: Log game state when game's initialized
+	GC.getGameINLINE().logGameStateString(NO_PLAYER);
 }
 
 //
@@ -2133,31 +2136,18 @@ void CvGame::update()
 	//1 slice is 250 ms. Write data once per second to file
 	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
 		if ((getTurnSlice() % 4) == 0) {
-			
-			time_t rawtime;
-			struct tm * timeinfo;
-			time ( &rawtime );
-			timeinfo = localtime ( &rawtime );
-
-			CvString timeString = asctime (timeinfo);
-			CvString from = "\n";
-			CvString to = " ";
-
-			replace(timeString, from, to);
-
+			// Log time.txt
 			CvWString turnTimerText; 
 			getTurnTimerText(turnTimerText);
-
 			std::ofstream outTime(GC.getGameINLINE().getLogfilePath("time"), std::ios::trunc);
-			std::ofstream outScore(GC.getGameINLINE().getLogfilePath("score"), std::ios::trunc);
 			outTime << (CvString)turnTimerText << "\n"; 
-			outTime	<< timeString << "\n";
+			outTime	<< this->getLocalTimeString() << "\n";
 			outTime << this->getGameTurnYear() << "\n";
 			outTime << this->getGameTurn() << "\n";
 			outTime.close();
 
-			int iCount = 0;
-
+			// Log score.txt
+			std::ofstream outScore(GC.getGameINLINE().getLogfilePath("score"), std::ios::trunc);
 			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 			{
 				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iI);
@@ -2180,38 +2170,45 @@ void CvGame::update()
 					convertGameTurn << GC.getGameINLINE().getGameTurn();
 
 					outScore << " --- " << (CvString)(kPlayer.getName()) << " --- " << convertScore.str() << " --- " << convertId.str() << "\n";
-
-					if (kPlayer.isConnected() && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
-						kPlayer.setPreviousConnected(true);
-						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- Connected --- ";
-						eventText += convertId.str()+ " --- "; 
-						eventText += convertGameTurn.str()	+ "\n";
-						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
-					}
-
-					if (score!=kPlayer.getPreviousScore()) {
-						kPlayer.setPreviousScore(score);
-
-						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- ";
-						eventText+= convertScore.str() + " --- " + convertId.str() + " --- ";
-						eventText += convertGameTurn.str()	+ "\n";
-						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
-					}					
-
-					if (!(kPlayer.isConnected()) && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
-						kPlayer.setPreviousConnected(false);
-
-						CvString eventText = timeString + " --- " + (CvString)(kPlayer.getName()) + " --- Disconnected --- ";
-						eventText += convertId.str() + " --- ";
-						eventText += convertGameTurn.str()	+ "\n";
-
-						appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
-					}
-
 				}
 			}
 			outScore.close();
 
+			// Log connected, disconnected, and score change events
+			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+			{
+				CvPlayer& kPlayer = GET_PLAYER((PlayerTypes) iI);
+				if (kPlayer.isEverAlive())
+				{
+					if (kPlayer.isConnected() && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
+						kPlayer.setPreviousConnected(true);
+						GC.getGameINLINE().logEvent(kPlayer.getID(), "Connected");
+						// Trigger recovery save
+						if(GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+							CvString saveName = (CvString)(kPlayer.getName()) + "_connected_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+							CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+							gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
+						}
+					}
+					if (!(kPlayer.isConnected()) && (kPlayer.isConnected()!=kPlayer.getPreviousConnected())) {
+						kPlayer.setPreviousConnected(false);
+						GC.getGameINLINE().logEvent(kPlayer.getID(), "Disconnected");
+						// Trigger recovery save
+						if(GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+							CvString saveName = (CvString)(kPlayer.getName()) + "_disconnected_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+							CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+							gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
+						}
+					}
+					int score = kPlayer.calculateScore();
+					if (score!=kPlayer.getPreviousScore()) {
+						kPlayer.setPreviousScore(score);
+						std::ostringstream convertScore;
+						convertScore << score;
+						GC.getGameINLINE().logEvent(kPlayer.getID(), convertScore.str());
+					}					
+				}
+			}
 		}
 	}
 
@@ -4774,6 +4771,16 @@ bool CvGame::isPaused() const
 
 void CvGame::setPausePlayer(PlayerTypes eNewValue)
 {
+	// novice: Log event for game being paused/unpaused
+	if(m_ePausePlayer != eNewValue) {
+		if(eNewValue == NO_PLAYER) {
+			GC.getGameINLINE().logEvent(eNewValue, "Game unpaused");
+		}
+		else {
+			GC.getGameINLINE().logEvent(eNewValue, "Game paused");
+		}
+	}
+
 	m_ePausePlayer = eNewValue;
 }
 
@@ -5703,14 +5710,124 @@ const CvWString & CvGame::getName()
 	return GC.getInitCore().getGameName();
 }
 
+// novice
+void CvGame::logEvent(PlayerTypes player, const CvString& eventType)
+{
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
+		CvString eventText = getLocalTimeString() + " --- ";
+		if(player == NO_PLAYER) {
+			eventText += "NO PLAYER";
+		}
+		else {
+			CvPlayer& kPlayer = GET_PLAYER(player);
+			eventText += (CvString)(kPlayer.getName());
+		}
+		eventText += " --- " + eventType + " --- ";
+
+		std::ostringstream convertPlayerId;
+		convertPlayerId << player;
+		eventText += convertPlayerId.str()+ " --- "; 
+
+		std::ostringstream convertGameTurn;
+		convertGameTurn << getGameTurn();
+		eventText += convertGameTurn.str() + "\n";
+
+		appendBeginAndResize(getLogfilePath("event"), eventText);
+	}
+}
+
+// novice
+CvString CvGame::getLocalTimeString(bool removeColons)
+{
+	time_t rawtime;
+	struct tm * timeinfo;
+	time ( &rawtime );
+	timeinfo = localtime ( &rawtime );
+
+	CvString timeString = asctime (timeinfo);
+	CvString from = "\n";
+	CvString to = " ";
+
+	replace(timeString, from, to);
+
+	if(removeColons) {
+		CvString colon = ":";
+		CvString colonReplacement = "_";
+		bool found = replace(timeString, colon, colonReplacement);
+		while(found) {
+			found = replace(timeString, colon, colonReplacement);
+		}
+		CvString space = " ";
+		found = replace(timeString, space, colonReplacement);
+		while(found) {
+			found = replace(timeString, space, colonReplacement);
+		}
+	}
+
+	std::stringstream convert;
+	convert << timeString;
+	return convert.str();
+}
+
 // novice - monitor
-CvString CvGame::getLogfilePath(const CvString& fileName)
+CvString CvGame::getLogfilePath(const CvString& fileName, bool addExtension)
 {
 	std::stringstream convert;
 	CvString *gameName = new CvString(GC.getInitCore().getGameName().GetCString()); // Converts wide string to narrow string
-	convert << GC.getDefineSTRING("PITBOSS_PORTAL_LOG_DIRECTORY") << "/" << gameName->c_str() << "_" << fileName << ".txt";
+	convert << GC.getDefineSTRING("PITBOSS_PORTAL_LOG_DIRECTORY") << "/" << gameName->c_str() << "_" << fileName;
+	if(addExtension) {
+		convert << ".txt";
+	}
 	delete gameName;
 	return convert.str();
+}
+
+// novice - monitor
+void CvGame::logGameStateString(PlayerTypes playerEndingTurn) {
+	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_GAMESTATE_LOGGING") > 0) {
+		std::stringstream filename;
+		filename << "gamestate_";
+		std::ostringstream convertGameTurn;
+		convertGameTurn << getGameTurn();
+
+		if(playerEndingTurn == NO_PLAYER) {
+			filename << "sot" << convertGameTurn.str();
+		}
+		else {
+			filename << "eot" << convertGameTurn.str() << "_player";
+			std::ostringstream convertPlayerId;
+			convertPlayerId << playerEndingTurn;
+			filename << convertPlayerId.str();
+		}
+		std::ofstream outState(getLogfilePath(filename.str()), std::ios::trunc);
+		outState << getGameStateString() << "\n"; 
+		outState.close();
+	}
+}
+
+// novice - monitor/observer. Call into python function getGameStateString in file CvGameInterface.py to get a string representation of the current game state
+CvString CvGame::getGameStateString()
+{
+	try
+	{
+		CvWStringBuffer szBuffer;
+		CvWString szGameState;
+		CyArgsList argsList;
+		argsList.add(0);
+		gDLL->getPythonIFace()->callFunction(PYGameModule, "getGameStateString", argsList.makeFunctionArgs(), &szGameState);
+		szBuffer.append(szGameState);
+		std::wstring gameState = szBuffer.getCString();
+		CvString *gameStateN = new CvString(gameState);
+		std::stringstream convert;
+		convert << gameStateN->c_str();
+		delete gameStateN;
+		return convert.str();
+	}
+	catch(std::exception & e) {
+		std::stringstream ex;
+		ex << "{ \"error\": \"Error getting game state from python: " << e.what() << "\"}";
+		return ex.str();
+	}
 }
 
 void CvGame::setName(const TCHAR* szName)
@@ -5889,11 +6006,9 @@ void CvGame::doTurn()
 	gDLL->getEngineIFace()->AutoSave();
 
 	// novice - monitor: Log game state at start of turn
-	if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
-		std::ostringstream convertGameTurn;
-		convertGameTurn << GC.getGameINLINE().getGameTurn();
-		GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("gamestate_sot" + convertGameTurn.str()), "State of game: Start of turn " + convertGameTurn.str());
-	}
+	GC.getGameINLINE().logGameStateString(NO_PLAYER);
+	// novice: Log event when turn starts so that the turn roll is immediately recorded
+	GC.getGameINLINE().logEvent(NO_PLAYER, "New turn");
 }
 
 

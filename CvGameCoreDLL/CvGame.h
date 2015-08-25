@@ -548,7 +548,15 @@ public:
 	void appendBeginAndResize(CvString filepath, CvString inputData);
 	bool replace(CvString& str, const CvString& from, CvString& to);
 	// novice - monitor
-	CvString getLogfilePath(const CvString& fileName);
+	CvString getLogfilePath(const CvString& fileName, bool addExtension = true);
+	// novice - monitor
+	CvString CvGame::getGameStateString();
+	// novice - monitor
+	void CvGame::logGameStateString(PlayerTypes playerEndingTurn);
+	// novice
+	void CvGame::logEvent(PlayerTypes player, const CvString& eventType);
+	// novice
+	CvString CvGame::getLocalTimeString(bool removeColons = false);
 
 protected:
 	int m_iElapsedGameTurns;
@@ -693,7 +701,8 @@ protected:
 	CvPlot* normalizeFindLakePlot(PlayerTypes ePlayer);
 
 	void doUpdateCacheOnTurn();
-  //Plako for Rbmod (monitor)
+    
+	//Plako for Rbmod (monitor)
 	void getTurnTimerText(CvWString& strText);
 };
 

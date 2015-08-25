@@ -2228,7 +2228,8 @@ bool CvPlayer::hasTrait(TraitTypes eTrait) const
 {
 	FAssertMsg((getLeaderType() >= 0), "getLeaderType() is less than zero");
 	FAssertMsg((eTrait >= 0), "eTrait is less than zero");
-	return GC.getLeaderHeadInfo(getLeaderType()).hasTrait(eTrait);
+	return GC.getLeaderHeadInfo(getLeaderType()).hasTrait(eTrait)
+		|| GC.getCivilizationInfo(getCivilizationType()).hasTrait(eTrait); // AGDM addition
 }
 
 bool CvPlayer::isHuman() const
@@ -3889,6 +3890,14 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		break;
 
 	case TRADE_MAPS:
+
+		//Plako for RtR mod No barbs = no map trading
+		if (GC.getGameINLINE().isOption(GAMEOPTION_NO_BARBARIANS))
+		{
+			return false;
+		}
+		//end RtR mod
+
 		if (getTeam() != GET_PLAYER(eWhoTo).getTeam())
 		{
 			if (GET_TEAM(getTeam()).isMapTrading() || GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isMapTrading())
@@ -6408,6 +6417,16 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 		// This increases known tech boni for games with more players than the hard cap.
 		if(iPossibleKnownCount > iPossibleKnownCountHardCap) {
 			iPossibleKnownCount = iPossibleKnownCountHardCap;
+		}
+	}
+
+	//novice: Hard lower cap used to decrease known tech boni for games with few players
+	int iPossibleKnownCountHardCapLower = GC.getDefineINT("TECH_COST_CIV_COUNT_HARD_CAP_LOWER");
+	if(iPossibleKnownCountHardCapLower > 0) {
+		// There's a hard cap; cap the number of civs at the hard cap.
+		// This decreases known tech boni for games with fewer players than the hard cap.
+		if(iPossibleKnownCount < iPossibleKnownCountHardCapLower) {
+			iPossibleKnownCount = iPossibleKnownCountHardCapLower;
 		}
 	}
 
@@ -9176,6 +9195,9 @@ void CvPlayer::setCapitalCity(CvCity* pNewCapitalCity)
 
 	pOldCapitalCity = getCapitalCity();
 
+	if (pOldCapitalCity != NULL) pOldCapitalCity->plot()->updateYield(); // AGDM addition
+	if (pNewCapitalCity != NULL) pNewCapitalCity->plot()->updateYield(); // AGDM addition
+
 	if (pOldCapitalCity != pNewCapitalCity)
 	{
 		bUpdatePlotGroups = ((pOldCapitalCity == NULL) || (pNewCapitalCity == NULL) || (pOldCapitalCity->plot()->getOwnerPlotGroup() != pNewCapitalCity->plot()->getOwnerPlotGroup()));
@@ -9920,29 +9942,14 @@ void CvPlayer::setEndTurn(bool bNewValue)
 			setAutoMoves(true);
 
 			//Plako for RBmod (monitor)
-			if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_PITBOSS_PORTAL_LOGGING") > 0) {
-				if (bNewValue)  {
-					time_t rawtime;
-					struct tm * timeinfo;
-					time ( &rawtime );
-					timeinfo = localtime ( &rawtime );
-					CvString timeString = asctime (timeinfo);					
-					CvString from = "\n";
-					CvString to = " ";
-					GC.getGameINLINE().replace(timeString, from, to);
-					
-					std::ostringstream convertId;
-					convertId << getID();
-
-					std::ostringstream convertGameTurn;
-					convertGameTurn << GC.getGameINLINE().getGameTurn();
-
-					CvString eventText = timeString + " --- " + (CvString)(getName()) + " --- END TURN --- ";
-					eventText += convertId.str() + " --- ";
-					eventText += convertGameTurn.str() + "\n";
-					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("event"), eventText);
-					GC.getGameINLINE().appendBeginAndResize(GC.getGameINLINE().getLogfilePath("gamestate_eot" + convertGameTurn.str() + "_player" + convertId.str()), "State of game: Player " + convertId.str() + " just ended turn " + convertGameTurn.str());
-				}
+			GC.getGameINLINE().logEvent(getID(), "END TURN");
+			// Novice: Log game state when player ends turn
+			GC.getGameINLINE().logGameStateString(getID());
+			// Novice: Trigger autosave if in pitboss mode
+			if(gDLL->IsPitbossHost() && GC.getDefineINT("ENABLE_EXTENDED_RECOVERY_SAVES") > 0) {
+				CvString saveName = (CvString)(getName()) + "_end_turn_" + GC.getGameINLINE().getLocalTimeString(true) + ".CivBeyondSwordSave";
+				CvString fileName = GC.getGameINLINE().getLogfilePath(saveName, false);
+				gDLL->getEngineIFace()->SaveGame(fileName, SAVEGAME_RECOVERY);
 			}
 		}
 	}
@@ -12459,6 +12466,9 @@ void CvPlayer::clearDiplomacy()
 
 const CvDiploQueue& CvPlayer::getDiplomacy() const
 {
+	if (GC.getGameINLINE().isPaused() && GC.getGameINLINE().isPitboss() && GC.getDefineINT("ENABLE_PITBOSS_PAUSE_FIX") > 0) {
+        return m_listDiplomacyEmpty;
+    }
 	return (m_listDiplomacy);
 }
 
@@ -15580,6 +15590,28 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 			changeExtraBuildingHappiness(eOurBuilding, (GC.getCivicInfo(eCivic).getBuildingHappinessChanges(iI) * iChange));
 			changeExtraBuildingHealth(eOurBuilding, (GC.getCivicInfo(eCivic).getBuildingHealthChanges(iI) * iChange));
 		}
+		// AGDM addition:
+		// TODO: Process this when a city is aquired as well. (I.e. a city changes ownership; thus the civics of the city changes
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); NULL != pLoopCity; pLoopCity = nextCity(&iLoop))
+		{
+			for (iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
+			{
+				pLoopCity->changeBuildingYieldChange((BuildingClassTypes)iI, (YieldTypes)iJ, (GC.getCivicInfo(eCivic)).getBuildingYieldChanges(iI, iJ) * iChange);
+				pLoopCity->changeYieldRateModifier((YieldTypes)iJ, pLoopCity->getNumActiveBuilding(eOurBuilding) * GC.getCivicInfo(eCivic).getBuildingYieldModifiers(iI, iJ) * iChange);
+			}
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; ++iJ)
+			{
+				pLoopCity->changeBuildingCommerceChange((BuildingClassTypes)iI, (CommerceTypes)iJ, (GC.getCivicInfo(eCivic)).getBuildingCommerceChanges(iI, iJ) * iChange);
+				pLoopCity->changeCommerceRateModifier((CommerceTypes)iJ, pLoopCity->getNumActiveBuilding(eOurBuilding) * GC.getCivicInfo(eCivic).getBuildingCommerceModifiers(iI, iJ) * iChange);
+			}
+			for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+			{
+				pLoopCity->changeFreeSpecialistCount((SpecialistTypes)iJ, pLoopCity->getNumActiveBuilding(eOurBuilding) * GC.getCivicInfo(eCivic).getBuildingFreeSpecialistCounts(iI, iJ) * iChange);
+			}
+			pLoopCity->changeMilitaryProductionModifier(pLoopCity->getNumActiveBuilding(eOurBuilding) * GC.getCivicInfo(eCivic).getBuildingMilitaryProductionModifiers(iI) * iChange);
+			pLoopCity->changeFreeExperience(pLoopCity->getNumActiveBuilding(eOurBuilding) * GC.getCivicInfo(eCivic).getBuildingFreeExperiences(iI) * iChange);
+		}					
 	}
 
 	for (iI = 0; iI < GC.getNumFeatureInfos(); iI++)
@@ -19675,7 +19707,11 @@ void CvPlayer::launch(VictoryTypes eVictory)
 	kTeam.finalizeProjectArtTypes();
 	kTeam.setVictoryCountdown(eVictory, kTeam.getVictoryDelay(eVictory));
 
-	gDLL->getEngineIFace()->AddLaunch(getID());
+	//Plako for RtR mod - Prevent Space ship launch crash (pitboss)
+	//Based on K-Mod change (Creadits to karadoc)
+	if (!gDLL->IsPitbossHost())
+		gDLL->getEngineIFace()->AddLaunch(getID());
+	//RtR mod end
 
 	kTeam.setCanLaunch(eVictory, false);
 
